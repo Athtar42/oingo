@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8" />
-		<title>Oingo</title>
+		<title>Oingo | Homepage</title>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 		<style>
 			.col-center-block {
@@ -21,7 +21,7 @@
 	</head>
 
 	<body>
-		
+
 		<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
 
 			<a class="navbar-brand" href="index.html">OINGO</a>
@@ -33,8 +33,15 @@
 					<li class="nav-item active">
 						<a class="nav-link" href="index.html">OINGO<span class="sr-only">(current)</span></a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="firends.php">Friends</a>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Friends
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="friends.php">Friends List</a>
+							<a class="dropdown-item" href="#">Request Sent</a>
+							<a class="dropdown-item" href="#">Request Received</a>
+						</div>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="filter.php">Filter</a>
@@ -51,10 +58,48 @@
 				<span class="text-light"><h1 class="display-4">OINGO</h1></span>
 			</div>
 		</div>
-		
-		
-		
-		
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-6 col-md-3 col-12">
+					<div class="container">
+						<div class="card">
+							<img class="card-img-top" src="img/pic01.jpg" alt="Card image cap">
+							<div class="card-body" style="width: 18rem;">
+								<h5 class="card-title">Username</h5>
+								<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+								<a href="#" class="card-link">Card link</a>
+								<a href="#" class="card-link">Another link</a>
+							</div>
+						</div>
+					</div>
+					<!--Sidebar content-->
+				</div>
+				<div class="col-sm-6 col-md-9 col-12">
+					<div class="container">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Card title</h5>
+								<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+								<a href="#" class="card-link">Card link</a>
+								<a href="#" class="card-link">Another link</a>
+							</div>
+							<div class="card-body">
+								<h5 class="card-title">Card title</h5>
+								<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+								<a href="#" class="card-link">Card link</a>
+								<a href="#" class="card-link">Another link</a>
+							</div>
+						</div>
+
+					</div>
+					<!--Body content-->
+				</div>
+
+			</div>
+		</div>
 		<script src="js/jquery-3.3.1.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 	</body>
