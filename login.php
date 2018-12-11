@@ -1,10 +1,10 @@
 <?php
 //check the email and password
-
+session_start();
 require_once("functions.php");
+
 $email=$_POST['email'];
 $password=$_POST['password'];
-
 if(($email=='')||($password=='')) //邮箱或密码为空
 {
 	echo "Email or password can not be empty!<br>";
@@ -15,10 +15,10 @@ if(($email=='')||($password=='')) //邮箱或密码为空
 else
 {
 	$user=userdata($email);
-	
 	if(($user['email']==$email)&&($user['password']==$password))
 	{
-		echo"<script type='text/javascript'>alert('Success');location='index.html';</script>";
+		$_SESSION['userid']=$user['userID'];
+		echo"<script type='text/javascript'>alert('Success');location='homepage.php';</script>";
 		//登陆成功，跳转到主页
 	}
 	else 
