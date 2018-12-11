@@ -70,7 +70,7 @@
 		</div>
 		<div class="container-fluid">
 <div class="row myCenter">
-				<div class="col-6 col-center-block">
+				<div class="col-12 col-md-6 col-center-block">
 					<div class="card">
 						<div class="card-body">
 							<h5 class="card-title">Change Profile</h5>
