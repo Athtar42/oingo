@@ -61,10 +61,66 @@
 				<span class="text-light"><h1 class="display-4">OINGO</h1></span>
 			</div>
 		</div>
-		
-		
-		
-		
+			<div class="container-fluid">
+			<div class="row">
+			<div class="col-sm-6 col-md-4 col-12">
+						<div class="card border-dark mb-3">
+							<div class="card-body">
+								<h5 class="card-title">Username</h5>
+								<p class="card-text">Gender</p>
+								<p class="card-text">Birthdate</p>
+								<p class="card-text">Region</p>
+								<p class="card-text">State</p>
+								
+							</div>
+						</div>
+			</div>
+			<div class="col-sm-6 col-md-4 col-12">
+						<div class="card border-dark mb-3">
+							<div class="card-body">
+								<h5 class="card-title">Username</h5>
+								<p class="card-text">Gender</p>
+								<p class="card-text">Birthdate</p>
+								<p class="card-text">Region</p>
+								<p class="card-text">State</p>
+							</div>
+						</div>
+			</div>
+						<div class="col-sm-6 col-md-4 col-12">
+						<div class="card border-dark mb-3">
+							<div class="card-body">
+								<h5 class="card-title">Username</h5>
+								<p class="card-text">Gender</p>
+								<p class="card-text">Birthdate</p>
+								<p class="card-text">Region</p>
+								<p class="card-text">State</p>
+							</div>
+						</div>
+			</div>
+						<div class="col-sm-6 col-md-4 col-12">
+						<div class="card border-dark mb-3">
+							<div class="card-body">
+								<h5 class="card-title">Username</h5>
+								<p class="card-text">Gender</p>
+								<p class="card-text">Birthdate</p>
+								<p class="card-text">Region</p>
+								<p class="card-text">State</p>
+							</div>
+						</div>
+			</div>
+						<div class="col-sm-6 col-md-4 col-12">
+						<div class="card border-dark mb-3">
+							<div class="card-body">
+								<h5 class="card-title">Username</h5>
+								<p class="card-text">Gender</p>
+								<p class="card-text">Birthdate</p>
+								<p class="card-text">Region</p>
+								<p class="card-text">State</p>
+							</div>
+						</div>
+			</div>
+			</div>
+		</div>
 		<script src="js/jquery-3.3.1.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 	</body>
