@@ -83,8 +83,62 @@
 				<div class="col-sm-6 col-md-9 col-12">
 					<div class="container">
 						<div class="card mb-3 border-primary">
+							<div class="card-header">
+								New Note
+							</div>
 							<div class="card-body">
-								<h5 class="card-title">Username</h5>
+								<form name="note" action="" method="post">
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text">Text</span>
+										</div>
+										<textarea class="form-control" aria-label="With textarea" id="notetext"></textarea>
+									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text" id="basic-addon">Tags (use space seperate)</span>
+										</div>
+										<input type="text" class="form-control" id="tags" aria-describedby="basic-addon3">
+									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="restrict">Who can see this note</label>
+										</div>
+										<select class="custom-select" id="restrict">
+											<option selected value="all">Everyone</option>
+											<option value="friends">Only Friends</option>
+											<option value="self">Only Myself</option>
+										</select>
+									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="radius">Viewable Radius</label>
+										</div>
+										<select class="custom-select" id="radius">
+											<option selected value="100">100</option>
+											<option value="500">500</option>
+											<option value="800">800</option>
+											<option value="1000">1000</option>
+										</select>
+									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="ifcomment">If allow comment？</label>
+										</div>
+										<select class="custom-select" id="ifcomment">
+											<option selected value="1">Allowed</option>
+											<option value="0">Not Allow</option>
+										</select>
+									</div>
+									<button type="submit" name="submit" value="submit" class="btn btn-primary mb-2">Post</button>
+								</form>
+							</div>
+						</div>
+						<div class="card mb-3 border-primary">
+							<div class="card-header">
+								Username
+							</div>
+							<div class="card-body">
 								<h6 class="card-subtitle mb-2 text-muted">Placename + Location</h6>
 								<p class="card-text text-primary">notetext</p>
 								<a href="#" class="card-link">#tag1</a>
@@ -94,11 +148,17 @@
 							<div>
 								<ul class="list-group list-group-flush">
 									<li class="list-group-item">
-										<form name="comment" action="" method="post" class="form-inline">
-										<input type="text" name="state" class="form-control" placeholder="Input Comment">
-										<button type="submit" name="submit" value="submit" class="btn btn-primary">Comment</button></li>
+										<form name="comment" action="" method="post">
+											<div class="row">
+												<div class="col-10">
+													<input type="text" name="state" class="form-control" placeholder="Input Comment">
+												</div>
+												<div class="col-2">
+													<button type="submit" name="submit" value="submit" class="btn btn-primary mb-2">Comment</button>
+												</div>
+											</div>
 										</form>
-									<li class="list-group-item">Username: + Comment</li>
+									</li>
 									<li class="list-group-item">Username: + Comment</li>
 									<li class="list-group-item">Username: + Comment</li>
 									<li class="list-group-item">Username: + Comment</li>
@@ -107,8 +167,11 @@
 							</div>
 						</div>
 						<div class="card mb-3 border-primary">
+							<div class="card-header">
+								Username
+							</div>
 							<div class="card-body">
-								<h5 class="card-title">Username</h5>
+
 								<h6 class="card-subtitle mb-2 text-muted">Placename + Location</h6>
 								<p class="card-text text-primary">notetext</p>
 								<a href="#" class="card-link">#tag1</a>
@@ -116,8 +179,11 @@
 							</div>
 						</div>
 						<div class="card mb-3 border-primary">
+							<div class="card-header">
+								Username
+							</div>
 							<div class="card-body">
-								<h5 class="card-title">Username</h5>
+
 								<h6 class="card-subtitle mb-2 text-muted">Placename + Location</h6>
 								<p class="card-text text-primary">notetext</p>
 								<a href="#" class="card-link">#tag1</a>
@@ -125,8 +191,11 @@
 							</div>
 						</div>
 						<div class="card mb-3 border-primary">
+							<div class="card-header">
+								Username
+							</div>
 							<div class="card-body">
-								<h5 class="card-title">Username</h5>
+
 								<h6 class="card-subtitle mb-2 text-muted">Placename + Location</h6>
 								<p class="card-text text-primary">notetext</p>
 								<a href="#" class="card-link">#tag1</a>
@@ -134,8 +203,11 @@
 							</div>
 						</div>
 						<div class="card mb-3 border-primary">
+							<div class="card-header">
+								Username
+							</div>
 							<div class="card-body">
-								<h5 class="card-title">Username</h5>
+
 								<h6 class="card-subtitle mb-2 text-muted">Placename + Location</h6>
 								<p class="card-text">notetext</p>
 								<a href="#" class="card-link">#tag1</a>
@@ -143,8 +215,10 @@
 							</div>
 						</div>
 						<div class="card mb-3 border-primary">
+							<div class="card-header">
+								Username
+							</div>
 							<div class="card-body text-primary">
-								<h5 class="card-title">Username</h5>
 								<h6 class="card-subtitle mb-2 text-muted">Placename + Location</h6>
 								<p class="card-text">notetext</p>
 								<a href="#" class="card-link">#tag1</a>
@@ -152,8 +226,11 @@
 							</div>
 						</div>
 						<div class="card mb-3 border-primary">
+							<div class="card-header">
+								Username
+							</div>
 							<div class="card-body text-primary">
-								<h5 class="card-title">Username</h5>
+
 								<h6 class="card-subtitle mb-2 text-muted">Placename + Location</h6>
 								<p class="card-text">notetext</p>
 								<a href="#" class="card-link">#tag1</a>
