@@ -52,6 +52,12 @@
 					<li class="nav-item">
 						<a class="nav-link" href="test.php">Test</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="setting.php">Settings</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Sign Out</a>
+					</li>
 				</ul>
 			</div>
 

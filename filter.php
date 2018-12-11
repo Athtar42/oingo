@@ -42,8 +42,8 @@
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 							<a class="dropdown-item" href="friends.php">Friends List</a>
-							<a class="dropdown-item" href="#">Request Sent</a>
-							<a class="dropdown-item" href="#">Request Received</a>
+							<a class="dropdown-item" href="#">Requests Sent</a>
+							<a class="dropdown-item" href="#">Requests Received</a>
 						</div>
 					</li>
 					<li class="nav-item active">
@@ -51,6 +51,13 @@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="test.php">Test</a>
+						
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="setting.php">Settings</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Sign Out</a>
 					</li>
 				</ul>
 			</div>
