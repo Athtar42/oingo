@@ -18,10 +18,11 @@ else
 	
 	if(($user['email']==$email)&&($user['password']==$password))
 	{
-		echo"<script type='text/javascript'>alert('Success');location='homepage.html';</script>";
+		echo"<script type='text/javascript'>alert('Success');location='index.html';</script>";
 		//登陆成功，跳转到主页
 	}
-	else {
+	else 
+	{
 		echo"<script type='text/javascript'>alert('Wrong password！Please enter again！');</script>";
 		//密码错误，返回login.php
 	}

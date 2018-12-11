@@ -5,21 +5,20 @@
     $db_username="root";
     $db_password="";
     $db_name="proj1"; //数据库名字
-    $con=mysqli_connect($server, $db_username, $db_password, $db_name);
+		$con=mysqli_connect($server, $db_username, $db_password, $db_name);
     if(!$con)
     {
     	die("can't connect".mysqli_error());
     }
     
 //read users'data from database
-function userdata($email)
+function userdata($getemail)
 {
-	//require("connect.php");
-	$sql="select * from user where email='".$email."'";
-	$raw_results = $con->query($sql);
-	//$result=mysqli_query($sql);
-	//$user=mysqli_fetch_array($result);
-	$iuser = $raw_results->fetch_assoc();
+	global $con;
+	$sql="select * from user where email='$getemail'";
+	$result=mysqli_query($con, $sql);
+	$user=mysqli_fetch_array($result);
+
 	return $user;
 }
 
