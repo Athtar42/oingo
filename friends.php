@@ -42,8 +42,8 @@
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 							<a class="dropdown-item" href="friends.php">Friends List</a>
-							<a class="dropdown-item" href="#">Request Sent</a>
-							<a class="dropdown-item" href="#">Request Received</a>
+							<a class="dropdown-item" href="requestsent.php">Request Sent</a>
+							<a class="dropdown-item" href="requestreceved.php">Request Received</a>
 						</div>
 					</li>
 					<li class="nav-item">
@@ -71,7 +71,7 @@
 								<p class="card-text">Birthdate</p>
 								<p class="card-text">Region</p>
 								<p class="card-text">State</p>
-								
+								<a href="#" class="btn btn-primary">Delete Friend</a>
 							</div>
 						</div>
 			</div>
@@ -83,6 +83,7 @@
 								<p class="card-text">Birthdate</p>
 								<p class="card-text">Region</p>
 								<p class="card-text">State</p>
+								<a href="#" class="btn btn-primary">Delete Friend</a>
 							</div>
 						</div>
 			</div>
@@ -94,6 +95,7 @@
 								<p class="card-text">Birthdate</p>
 								<p class="card-text">Region</p>
 								<p class="card-text">State</p>
+								<a href="#" class="btn btn-primary">Delete Friend</a>
 							</div>
 						</div>
 			</div>
@@ -105,6 +107,7 @@
 								<p class="card-text">Birthdate</p>
 								<p class="card-text">Region</p>
 								<p class="card-text">State</p>
+								<a href="#" class="btn btn-primary">Delete Friend</a>
 							</div>
 						</div>
 			</div>
@@ -116,6 +119,7 @@
 								<p class="card-text">Birthdate</p>
 								<p class="card-text">Region</p>
 								<p class="card-text">State</p>
+								<a href="#" class="btn btn-primary">Delete Friend</a>
 							</div>
 						</div>
 			</div>
