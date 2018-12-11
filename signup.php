@@ -16,10 +16,16 @@ $email=$_POST['email'];
 $username=$_POST['username'];
 $password=$_POST['password'];
 $confirm=$_POST['confirm'];
+$gender=$_POST['gender'];
+$month=$_POST['month'];
+$day=$_POST['day'];
+$year=$_POST['year'];
+$region=$_POST['region'];
 
-if(($email=="")||($password=="")||($username=="")||($confirm=="")) //任意为空
+
+if(($email=="")||($password=="")||($username=="")||($confirm=="")||($gender=="")||($month=="")||($day=="")||($year=="")||($region=="")) //任意为空
 {
-	echo "Please fill in all required blanks.";
+	echo "Please fill in all the blanks.";
 }
 else
 {
@@ -31,7 +37,9 @@ else
 	}
 	else //注册成功录入数据库
 	{
-		$sql="insert into user (userID, email, userName, password) values('100', '$email', '$username', '$password')";
+		$birthdate=$year."-".$month."-".$day;
+		//echo $birthdate;
+		$sql="insert into user values('99', '$email', '$username', '$password', '$gender', '$birthdate', '$region')";
 	    //userID改成自动增加的
 		$result=mysqli_query($con, $sql);
 		if($result)
