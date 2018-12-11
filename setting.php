@@ -70,39 +70,53 @@
 		</div>
 		<div class="container-fluid">
 <div class="row myCenter">
-				<div class="col-xs-6 col-md-4 col-center-block">
+				<div class="col-6 col-center-block">
 					<div class="card">
-						<div class="card-body" style="width: 21rem;">
+						<div class="card-body">
 							<h5 class="card-title">Change Profile</h5>
 							<form name="singup" action="signup.php" method="post" class="form-signup">
-								<div class="form-group">
-									<label for="email">Email</label><input type="text" name="email" class="form-control">
+								<div class="form-group row">
+									<label for="password" class="col-sm-4 col-form-label">State</label>
+									<div class="col-sm-8">
+										<input type="text" name="state" class="form-control" value="">
+									</div>
 								</div>
-								<div class="form-group">
-									<label for="username">Username</label> <input type="text" name="username" class="form-control">
+								<div class="form-group row">
+									<label for="password" class="col-sm-4 col-form-label">New password</label>
+									<div class="col-sm-8">
+										<input type="password" name="password" class="form-control">
+									</div>
 								</div>
-								<div class="form-group">
-									<label for="password">Password</label><input type="password" name="password" class="form-control">
+								<div class="form-group row">
+									<label for="confirm" class="col-sm-4 col-form-label">Comfirm password</label>
+									<div class="col-sm-8">
+									<input type="password" name="confirm" class="form-control">
+									</div>
 								</div>
-								<div class="form-group">
-									<label for="confirm">Comfirm password</label><input type="password" name="confirm" class="form-control">
+								<fieldset class="form-group">
+								<div class="row">
+									<legend class="col-form-label col-sm-4 pt-0" class="col-sm-2 col-form-label">Genders</legend>
+								<div class="col-sm-8">
+								<div class="form-check">
+									<input type="radio" name="gender" value="male" class="form-check-input"><label for="gender" class="form-check-label ">Famale</label>
 								</div>
-								
-								<div class="form-check form-check-inline">
-									<input type="radio" name="gender" value="male" class="form-check-input"><label for="gender " class="form-check-label ">Famale</label>
-								</div>
-								<div class="form-check form-check-inline">
+								<div class="form-check">
 									<input type="radio" name="gender" value="female" class="form-check-input"><label for="gender" class="form-check-label">Male</label>
 								</div>
-								
-								<div class="form-group">
-
-									<label for="birthdate">Birthday</label>
-									<input id="birthdate" type="date" name="birthdate" class="form-control">
-
 								</div>
-								<div class="form-group">
-									<label for="region">Region</label>
+								</div>
+								</fieldset>
+								<div class="form-group row">
+									
+			
+									<label for="birthdate" class="col-sm-4 col-form-label">Birthday</label>
+									<div class="col-sm-8">
+									<input id="birthdate" type="date" name="birthdate" class="form-control">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="region" class="col-sm-4 col-form-label">Region</label>
+									<div class="col-sm-8">
 									<select id="region" name="region" class="form-control">
 										<option value="">Country...</option>
 										<option value="Afganistan">Afghanistan</option>
@@ -353,9 +367,9 @@
 										<option value="Zambia">Zambia</option>
 										<option value="Zimbabwe">Zimbabwe</option>
 									</select>
-									
+									</div>
 								</div>
-								<button type="submit" name="submit" value="submit" class="btn btn-primary">Signup</button>
+								<button type="submit" name="submit" value="submit" class="btn btn-primary">Save</button>
 							</form>
 						</div>
 					</div>

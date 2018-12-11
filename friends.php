@@ -43,7 +43,7 @@
 						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 							<a class="dropdown-item" href="friends.php">Friends List</a>
 							<a class="dropdown-item" href="requestsent.php">Requests Sent</a>
-							<a class="dropdown-item" href="requestreceved.php">Requests Received</a>
+							<a class="dropdown-item" href="requestreceived.php">Requests Received</a>
 						</div>
 					</li>
 					<li class="nav-item">
