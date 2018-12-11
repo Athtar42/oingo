@@ -74,7 +74,7 @@
 					<div class="card">
 						<div class="card-body">
 							<h5 class="card-title">Change Profile</h5>
-							<form name="singup" action="signup.php" method="post" class="form-signup">
+							<form name="singup" action="signup.php" method="post" class="form-setting">
 								<div class="form-group row">
 									<label for="state" class="col-sm-4 col-form-label">State</label>
 									<div class="col-sm-8">
