@@ -42,8 +42,8 @@
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 							<a class="dropdown-item" href="friends.php">Friends List</a>
-							<a class="dropdown-item" href="requestsent.php">Request Sent</a>
-							<a class="dropdown-item" href="requestreceved.php">Request Received</a>
+							<a class="dropdown-item" href="requestsent.php">Requests Sent</a>
+							<a class="dropdown-item" href="requestreceved.php">Requests Received</a>
 						</div>
 					</li>
 					<li class="nav-item">
@@ -61,7 +61,9 @@
 				<span class="text-light"><h1 class="display-4">OINGO</h1></span>
 			</div>
 		</div>
+		
 			<div class="container-fluid">
+				<h2>Friends List</h2>
 			<div class="row">
 			<div class="col-sm-6 col-md-4 col-12">
 						<div class="card border-dark mb-3">
