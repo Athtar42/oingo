@@ -2,14 +2,67 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Login</title>
+        <title>Oingo | Login</title>    			
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<style>
+			.col-center-block {
+				float: none;
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			.jumbotron {
+				background-image: url("img/primary-search-bg.jpg");
+				background-size: cover;
+			}
+		</style>
     </head>
     <body>
-        <form name="login" action="login.php" method="post">
-                <p>Email: <input type="text" name="email"></p>
-                <p>Password: <input type="password" name="password"></p>
-                <p><input type="submit" name="submit" value="Login"></p>
-				<a href="http://localhost/PROJECT/signup.html">Signup</a>
-        </form>        
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
+
+	<a class="navbar-brand" href="index.html">OINGO</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    				<span class="navbar-toggler-icon"></span>
+  				</button>
+	<div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav">
+			<li class="nav-item active">
+				<a class="nav-link" href="login.html">Login<span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="signup.html">Signup</a>
+			</li>
+		</ul>
+	</div>
+
+</nav>
+<div class="jumbotron jumbotron-fluid">
+	<div class="container">
+		<span class="text-light"><h1 class="display-4">OINGO</h1></span>
+	</div>
+</div>
+				<div class="container">
+			<div class="row myCenter">
+				<div class="col-xs-6 col-md-4 col-center-block">
+					<div class="card">
+						<div class="card-body" style="width: 21rem;">
+							<h5 class="card-title">Login</h5>
+        <form name="login" action="login.php" method="post" class="form-signin">
+        	<div class="form-group">
+                <label for="email">Email</label> <input type="text" name="email" class="form-control" placeholder= "Please input your Email.">               
+                </div>
+                <div class="form-group">
+                <label for="password">Password</label> <input type="password" name="password" class="form-control" placeholder= "Please input your password.">
+                </div>
+                <button type="submit" name="submit" class="btn btn-primary">Login</button>
+				<p class="card-text">Don't have an account?<a href="signup.html" class="card-link"> Signup</a></p>
+				
+        </form>  
+         </div>
+        </div>
+        </div>
+			</div>
+		</div>
     </body>
 </html>
