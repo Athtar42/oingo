@@ -95,7 +95,7 @@
 								</div>
 								<fieldset class="form-group">
 								<div class="row">
-									<legend class="col-form-label col-sm-4 pt-0" class="col-sm-2 col-form-label">Gender</legend>
+									<legend class="col-form-label col-sm-4 pt-0">Gender</legend>
 								<div class="col-sm-8">
 								<div class="form-check">
 									<input type="radio" name="gender" value="male" class="form-check-input"><label for="gender" class="form-check-label ">Famale</label>
