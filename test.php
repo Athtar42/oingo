@@ -64,22 +64,20 @@
 if ((isset($_POST["currentlocation"]))&&(isset($_POST["gapi"]))){
 	$location=$_POST['currentlocation'];
 	$gapi=$_POST['gapi'];	
-	$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".$location."&key=".$gapi;
-	echo $url;
-	//$data = file_get_contents($url);
-	//$map = json_decode($data, true);
+	$url = "https://maps.googleapis.com/maps/api/geocode/json?address=".urlencode($location)."&key=".urlencode($gapi);
+	$data = file_get_contents($url);
+	$response = json_decode($data, true);
 	
-	$context = stream_context_create(array(
-	'http' => array(
-    'ignore_errors'=>true,
-    'method'=>'GET'
-     // for more options check http://www.php.net/manual/en/context.http.php
-    )
-	));
-	$response = json_decode(file_get_contents($url, false, $context));
-	echo $response;
-	echo $response['result'][0]['geometry']['location']['lat'];
-	echo $response['result'][0]['geometry']['location']['lng'];
+	//$context = stream_context_create(array(
+	//'http' => array(
+    //'ignore_errors'=>true,
+    //'method'=>'GET'
+    // for more options check http://www.php.net/manual/en/context.http.php
+    //)
+	//));
+	//$response = json_decode(file_get_contents($url, false, $context),true);
+	echo $response['results'][0]['geometry']['location']['lat'];
+	echo $response['results'][0]['geometry']['location']['lng'];
 }
 else{
 	//echo "<script type='text/javascript'>alert('Location or API can not be empty!')</script>";
