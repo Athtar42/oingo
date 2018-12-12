@@ -90,7 +90,7 @@ function check_username($username)
 function statedata($userid)
 {
 	global $con;
-	$sql="select * from state where userID=$userid";
+	$sql="select * from state where userID='$userid'";
 	$result=mysqli_query($con, $sql);
 	$state=mysqli_fetch_array($result);
 	
