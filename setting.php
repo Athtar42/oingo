@@ -1,5 +1,10 @@
 <?php
+//edit user's profile
 
+session_start();
+require_once("functions.php");
+$user=userdata($_SESSION['email']);
+$state=statedata($user['userID']); 
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +62,7 @@
 						<a class="nav-link" href="setting.php">Settings</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Sign Out</a>
+						<a class="nav-link" href="logout.php">Sign Out</a>
 					</li>
 				</ul>
 			</div>
@@ -74,11 +79,11 @@
 					<div class="card">
 						<div class="card-body">
 							<h5 class="card-title">Change Profile</h5>
-							<form name="singup" action="signup.php" method="post" class="form-setting">
+							<form name="profile" action="profile.php" method="post" class="form-setting">
 								<div class="form-group row">
 									<label for="state" class="col-sm-4 col-form-label">State</label>
 									<div class="col-sm-8">
-										<input type="text" name="state" class="form-control" value="">
+										<input type="text" name="state" class="form-control" value="<?php echo $state['state']; ?>">
 									</div>
 								</div>
 								<div class="form-group row">
@@ -95,14 +100,28 @@
 								</div>
 								<fieldset class="form-group">
 								<div class="row">
-									<legend class="col-form-label col-sm-4 pt-0">Gender</legend>
+									<legend class="col-form-label col-sm-4 pt-0" class="col-sm-2 col-form-label">Gender</legend>
 								<div class="col-sm-8">
-								<div class="form-check">
-									<input type="radio" name="gender" value="male" class="form-check-input"><label for="gender" class="form-check-label ">Famale</label>
-								</div>
-								<div class="form-check">
-									<input type="radio" name="gender" value="female" class="form-check-input"><label for="gender" class="form-check-label">Male</label>
-								</div>
+									<?php
+									if($user['gender']=='female')
+									{
+										echo '<div class="form-check">';
+											echo '<input type="radio" name="gender" value="male" class="form-check-input" checked><label for="gender" class="form-check-label ">Female</label>';
+										echo '</div>';
+										echo '<div class="form-check">';
+											echo '<input type="radio" name="gender" value="female" class="form-check-input"><label for="gender" class="form-check-label">Male</label>';
+										echo '</div>';
+									}
+									else
+									{
+										echo '<div class="form-check">';
+											echo '<input type="radio" name="gender" value="male" class="form-check-input"><label for="gender" class="form-check-label ">Female</label>';
+										echo '</div>';
+										echo '<div class="form-check">';
+											echo '<input type="radio" name="gender" value="female" class="form-check-input" checked><label for="gender" class="form-check-label">Male</label>';
+										echo '</div>';
+									}
+									?>
 								</div>
 								</div>
 								</fieldset>
@@ -111,13 +130,14 @@
 			
 									<label for="birthdate" class="col-sm-4 col-form-label">Birthday</label>
 									<div class="col-sm-8">
-									<input id="birthdate" type="date" name="birthdate" class="form-control">
+									<input id="birthdate" type="date" name="birthdate" class="form-control" value="<?php echo $user['birthDate']; ?>">
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="region" class="col-sm-4 col-form-label">Region</label>
 									<div class="col-sm-8">
 									<select id="region" name="region" class="form-control">
+										<option value="<?php echo $user['region']; ?>"><?php echo $user['region']; ?></option>
 										<option value="">Country...</option>
 										<option value="Afganistan">Afghanistan</option>
 										<option value="Albania">Albania</option>

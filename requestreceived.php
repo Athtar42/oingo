@@ -99,7 +99,7 @@ $row=mysqli_num_rows($result);
 								echo "<p class='card-text'>".$received['birthdate']."</p>";
 								echo "<p class='card-text'>".$received['region']."</p>";
 								echo "<p class='card-text'>".$received['state']."</p>";
-								echo "<a href='cancel.php?friendid=".$friend['userID1']."class='btn btn-primary'>Cancel</a>";
+								echo "<a href='cancel.php?friendid=".$received['userID1']."class='btn btn-primary'>Cancel</a>";
 							echo "</div>";
 						echo "</div>";
 			echo "</div>";
