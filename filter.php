@@ -130,18 +130,18 @@
 										</select>
 									</div>
 									<fieldset class="form-group">
-									<div class="row">
-										<legend class="col-form-label col-sm-5 pt-0">If apply after adding?</legend>
-										<div class="col-sm-7">
-										<div class="form-check">
-										<input type="radio" name="apply" value="1" class="form-check-input"><label for="gender" class="form-check-label ">Yes</label>
+										<div class="row">
+											<legend class="col-form-label col-sm-5 pt-0">If apply after adding?</legend>
+											<div class="col-sm-7">
+												<div class="form-check">
+													<input type="radio" name="apply" value="1" class="form-check-input"><label for="apply" class="form-check-label">Yes</label>
+												</div>
+												<div class="form-check">
+													<input type="radio" name="apply" value="0" class="form-check-input"><label for="apply" class="form-check-label">Not yet</label>
+												</div>
+											</div>
 										</div>
-										<div class="form-check">
-										<input type="radio" name="apply" value="0" class="form-check-input"><label for="gender" class="form-check-label">Not yet</label>
-										</div>
-									</div>
-								</div>
-								</fieldset>
+									</fieldset>
 									
 									<button type="submit" name="submit" value="submit" class="btn btn-primary mb-2">Add</button>
 								</form>
@@ -205,6 +205,95 @@
 											<option value="self">Only Myself</option>
 										</select>
 									</div>
+									<fieldset class="form-group">
+										<div class="row">
+											<legend class="col-form-label col-sm-5 pt-0">If apply?</legend>
+											<div class="col-sm-7">
+												<div class="form-check">
+													<input type="radio" name="apply" value="1" class="form-check-input"><label for="apply" class="form-check-label">Yes</label>
+												</div>
+												<div class="form-check">
+													<input type="radio" name="apply" value="0" class="form-check-input"><label for="apply" class="form-check-label">Not yet</label>
+												</div>
+											</div>
+										</div>
+									</fieldset>
+									<button type="submit" name="submit" value="submit" class="btn btn-primary mb-2">Change</button>
+								</form>
+							
+						</div>			
+		
+					</div>
+					<div class="card mb-3">
+						<div class="card-header">
+							FilterID
+						</div>						
+						<div class="card-body">
+								<form name="newfilter" action="" method="post">
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="startdate">Start Date</label>
+										</div>
+										<input type="date" class="form-control" id="startdate" name="startdate" aria-describedby="basic-addon">
+									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="enddate">End Date</label>
+										</div>
+										<input type="date" class="form-control" id="enddate" name="enddate" aria-describedby="basic-addon">
+									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="starttime">Start Time</label>
+										</div>
+										<input type="time" class="form-control" id="starttime" name="starttime" aria-describedby="basic-addon">
+									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="starttime">End Time</label>
+										</div>
+										<input type="time" class="form-control" id="endtime" name="endtime" aria-describedby="basic-addon">
+									</div>				
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="radius">Repitition</label>
+										</div>
+										<select class="custom-select" id="radius">
+											<option selected value="no">No Repitition</option>
+											<option value="daily">Daily</option>
+											<option value="weekly">Weekly</option>
+											<option value="monthly">Monthly</option>
+										</select>
+									</div>													
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text" id="basic-addon">Tag</span>
+										</div>
+										<input type="text" class="form-control" id="tag" aria-describedby="basic-addon">
+									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="restrict">Resrtrict</label>
+										</div>
+										<select class="custom-select" id="restrict">
+											<option selected value="all">Everyone</option>
+											<option value="friends">Only Friends</option>
+											<option value="self">Only Myself</option>
+										</select>
+									</div>
+									<fieldset class="form-group">
+										<div class="row">
+											<legend class="col-form-label col-sm-5 pt-0">If apply?</legend>
+											<div class="col-sm-7">
+												<div class="form-check">
+													<input type="radio" name="apply" value="1" class="form-check-input"><label for="apply" class="form-check-label">Yes</label>
+												</div>
+												<div class="form-check">
+													<input type="radio" name="apply" value="0" class="form-check-input"><label for="apply" class="form-check-label">Not yet</label>
+												</div>
+											</div>
+										</div>
+									</fieldset>
 									<button type="submit" name="submit" value="submit" class="btn btn-primary mb-2">Change</button>
 								</form>
 							
