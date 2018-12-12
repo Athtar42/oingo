@@ -68,10 +68,81 @@
 				<span class="text-light"><h1 class="display-4">OINGO</h1></span>
 			</div>
 		</div>
+		<div class="container">
+			<div class="row myCenter">
+				<div class="col-12 col-md-6 col-center-block">
+					<h2>Filters</h2>
+					<div class="card mb-3">
+						<div class="card-header">
+							New Filter
+						</div>
+						<div class="card-body">
+								<form name="newfilter" action="" method="post">
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="startdate">Start Date</label>
+										</div>
+										<input type="date" class="form-control" id="startdate" name="startdate" aria-describedby="basic-addon">
+									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="enddate">End Date</label>
+										</div>
+										<input type="date" class="form-control" id="enddate" name="enddate" aria-describedby="basic-addon">
+									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="starttime">Start Time</label>
+										</div>
+										<input type="time" class="form-control" id="starttime" name="starttime" aria-describedby="basic-addon">
+									</div>																	
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text" id="basic-addon">Tag</span>
+										</div>
+										<input type="text" class="form-control" id="tag" aria-describedby="basic-addon">
+									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="restrict">Who can see this note</label>
+										</div>
+										<select class="custom-select" id="restrict">
+											<option selected value="all">Everyone</option>
+											<option value="friends">Only Friends</option>
+											<option value="self">Only Myself</option>
+										</select>
+									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="radius">Viewable Radius</label>
+										</div>
+										<select class="custom-select" id="radius">
+											<option selected value="100">100</option>
+											<option value="500">500</option>
+											<option value="800">800</option>
+											<option value="1000">1000</option>
+										</select>
+									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="ifcomment">If allow comment？</label>
+										</div>
+										<select class="custom-select" id="ifcomment">
+											<option selected value="1">Allowed</option>
+											<option value="0">Not Allow</option>
+										</select>
+									</div>
+									<button type="submit" name="submit" value="submit" class="btn btn-primary mb-2">Post</button>
+								</form>
+							
+						</div>	
+					</div>
+					<div class="card mb-3 border-primary">
 		
 		
-		
-		
+					</div>
+			</div>
+		</div>
 		<script src="js/jquery-3.3.1.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 	</body>
