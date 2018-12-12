@@ -1,4 +1,21 @@
 <?php
+session_start();
+$server="localhost";
+$db_username="root";
+$db_password="";
+$db_name="proj1"; 
+$con=mysqli_connect($server, $db_username, $db_password, $db_name);
+if(!$con)
+{
+	die("can't connect".mysqli_error());
+}
+$userid=$_SESSION['userid'];
+$sql="select friendship.userID2, user.userName, user.gender, user.birthdate, user.region, state.state
+	  from friendship join user on friendship.userID2=user.userID join state on friendship.userID2=state.userID
+	  where friendship.userID1='$userid'";
+$result=mysqli_query($con, $sql);
+$row=mysqli_num_rows($result);
+
 
 ?>
 <!DOCTYPE html>
@@ -67,70 +84,29 @@
 				<span class="text-light"><h1 class="display-4">OINGO</h1></span>
 			</div>
 		</div>
-		
 			<div class="container-fluid">
 				<h2>Friends List</h2>
 			<div class="row">
-			<div class="col-sm-6 col-md-4 col-12">
-						<div class="card border-dark mb-3">
-							<div class="card-body">
-								<h5 class="card-title">Username</h5>
-								<p class="card-text">Gender</p>
-								<p class="card-text">Birthdate</p>
-								<p class="card-text">Region</p>
-								<p class="card-text">State</p>
-								<a href="#" class="btn btn-primary">Delete Friend</a>
-							</div>
-						</div>
-			</div>
-			<div class="col-sm-6 col-md-4 col-12">
-						<div class="card border-dark mb-3">
-							<div class="card-body">
-								<h5 class="card-title">Username</h5>
-								<p class="card-text">Gender</p>
-								<p class="card-text">Birthdate</p>
-								<p class="card-text">Region</p>
-								<p class="card-text">State</p>
-								<a href="#" class="btn btn-primary">Delete Friend</a>
-							</div>
-						</div>
-			</div>
-						<div class="col-sm-6 col-md-4 col-12">
-						<div class="card border-dark mb-3">
-							<div class="card-body">
-								<h5 class="card-title">Username</h5>
-								<p class="card-text">Gender</p>
-								<p class="card-text">Birthdate</p>
-								<p class="card-text">Region</p>
-								<p class="card-text">State</p>
-								<a href="#" class="btn btn-primary">Delete Friend</a>
-							</div>
-						</div>
-			</div>
-						<div class="col-sm-6 col-md-4 col-12">
-						<div class="card border-dark mb-3">
-							<div class="card-body">
-								<h5 class="card-title">Username</h5>
-								<p class="card-text">Gender</p>
-								<p class="card-text">Birthdate</p>
-								<p class="card-text">Region</p>
-								<p class="card-text">State</p>
-								<a href="#" class="btn btn-primary">Delete Friend</a>
-							</div>
-						</div>
-			</div>
-						<div class="col-sm-6 col-md-4 col-12">
-						<div class="card border-dark mb-3">
-							<div class="card-body">
-								<h5 class="card-title">Username</h5>
-								<p class="card-text">Gender</p>
-								<p class="card-text">Birthdate</p>
-								<p class="card-text">Region</p>
-								<p class="card-text">State</p>
-								<a href="#" class="btn btn-primary">Delete Friend</a>
-							</div>
-						</div>
-			</div>
+			<?php 
+			for($i=0;$i<$row;$i++)
+			{
+				$friend=mysqli_fetch_array($result);
+				//echo $friend['userName'];
+			echo "<div class='col-sm-6 col-md-4 col-12'>";
+						echo "<div class='card border-dark mb-3'>";
+							echo "<div class='card-body'>";
+								echo "<h5 class='card-title'>".$friend['userName']."</h5>";
+								echo "<p class='card-text'>".$friend['gender']."</p>";
+								echo "<p class='card-text'>".$friend['birthdate']."</p>";
+								echo "<p class='card-text'>".$friend['region']."</p>";
+								echo "<p class='card-text'>".$friend['state']."</p>";
+								echo "<a href='delete.php?friendid=".$friend['userID2']."class='btn btn-primary'>Delete Friend</a>";
+							echo "</div>";
+						echo "</div>";
+			echo "</div>";
+			}
+			?>
+			
 			</div>
 		</div>
 		<script src="js/jquery-3.3.1.js"></script>

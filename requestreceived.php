@@ -1,4 +1,21 @@
 <?php
+session_start();
+$server="localhost";
+$db_username="root";
+$db_password="";
+$db_name="proj1"; 
+$con=mysqli_connect($server, $db_username, $db_password, $db_name);
+if(!$con)
+{
+	die("can't connect".mysqli_error());
+}
+$userid=$_SESSION['userid'];
+$sql="select request.userID1, user.userName, user.gender, user.birthdate, user.region, state.state
+	  from request join user on request.userID1=user.userID join state on request.userID1=state.userID
+	  where request.userID2='$userid'";
+$result=mysqli_query($con, $sql);
+$row=mysqli_num_rows($result);
+//$received=mysqli_fetch_array($result);
 
 ?>
 <!DOCTYPE html>
@@ -70,66 +87,24 @@
 		</div>
 			<div class="container-fluid"><h2>Requests Received</h2>
 			<div class="row">
-			<div class="col-sm-6 col-md-4 col-12">
-						<div class="card border-dark mb-3">
-							<div class="card-body">
-								<h5 class="card-title">Username</h5>
-								<p class="card-text">Gender</p>
-								<p class="card-text">Birthdate</p>
-								<p class="card-text">Region</p>
-								<p class="card-text">State</p>
-								<a href="#" class="btn btn-primary">Cancel</a>
-							</div>
-						</div>
-			</div>
-			<div class="col-sm-6 col-md-4 col-12">
-						<div class="card border-dark mb-3">
-							<div class="card-body">
-								<h5 class="card-title">Username</h5>
-								<p class="card-text">Gender</p>
-								<p class="card-text">Birthdate</p>
-								<p class="card-text">Region</p>
-								<p class="card-text">State</p>
-								<a href="#" class="btn btn-primary">Cancel</a>
-							</div>
-						</div>
-			</div>
-						<div class="col-sm-6 col-md-4 col-12">
-						<div class="card border-dark mb-3">
-							<div class="card-body">
-								<h5 class="card-title">Username</h5>
-								<p class="card-text">Gender</p>
-								<p class="card-text">Birthdate</p>
-								<p class="card-text">Region</p>
-								<p class="card-text">State</p>
-								<a href="#" class="btn btn-primary">Cancel</a>
-							</div>
-						</div>
-			</div>
-						<div class="col-sm-6 col-md-4 col-12">
-						<div class="card border-dark mb-3">
-							<div class="card-body">
-								<h5 class="card-title">Username</h5>
-								<p class="card-text">Gender</p>
-								<p class="card-text">Birthdate</p>
-								<p class="card-text">Region</p>
-								<p class="card-text">State</p>
-								<a href="#" class="btn btn-primary">Cancel</a>
-							</div>
-						</div>
-			</div>
-						<div class="col-sm-6 col-md-4 col-12">
-						<div class="card border-dark mb-3">
-							<div class="card-body">
-								<h5 class="card-title">Username</h5>
-								<p class="card-text">Gender</p>
-								<p class="card-text">Birthdate</p>
-								<p class="card-text">Region</p>
-								<p class="card-text">State</p>
-								<a href="#" class="btn btn-primary">Cancel</a>
-							</div>
-						</div>
-			</div>
+			<?php 
+			for($i=0;$i<$row;$i++)
+			{
+				$received=mysqli_fetch_array($result);
+			echo "<div class='col-sm-6 col-md-4 col-12'>";
+						echo "<div class='card border-dark mb-3'>";
+							echo "<div class='card-body'>";
+								echo "<h5 class='card-title'>".$received['userName']."</h5>";
+								echo "<p class='card-text'>".$received['gender']."</p>";
+								echo "<p class='card-text'>".$received['birthdate']."</p>";
+								echo "<p class='card-text'>".$received['region']."</p>";
+								echo "<p class='card-text'>".$received['state']."</p>";
+								echo "<a href='cancel.php?friendid=".$friend['userID1']."class='btn btn-primary'>Cancel</a>";
+							echo "</div>";
+						echo "</div>";
+			echo "</div>";
+			}
+			?>
 			</div>
 		</div>
 		<script src="js/jquery-3.3.1.js"></script>
