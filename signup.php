@@ -1,5 +1,6 @@
 <?php
 //check the signup info
+session_start();
 
 $server="localhost";
 $db_username="root";
@@ -17,15 +18,14 @@ $username=$_POST['username'];
 $password=$_POST['password'];
 $confirm=$_POST['confirm'];
 $gender=$_POST['gender'];
-$month=$_POST['month'];
-$day=$_POST['day'];
-$year=$_POST['year'];
+$month=$_POST['birthdate'];
 $region=$_POST['region'];
 
 
-if(($email=="")||($password=="")||($username=="")||($confirm=="")||($gender=="")||($month=="")||($day=="")||($year=="")||($region=="")) //任意为空
+if(($email=="")||($password=="")||($username=="")||($confirm=="")||($gender=="")||($birthdate=="")||($region=="")) //任意为空
 {
-	echo "Please fill in all the blanks.";
+	//echo "Please fill in all the blanks.";
+	echo"<script type='text/javascript'>alert('Please fill in all the blanks.');location='signup.html';</script>";
 }
 else
 {
@@ -37,22 +37,12 @@ else
 	}
 	else //注册成功录入数据库
 	{
-		$birthdate=$year."-".$month."-".$day;
-		//echo $birthdate;
-		$sql="insert into user values('99', '$email', '$username', '$password', '$gender', '$birthdate', '$region')";
-	    //userID改成自动增加的
-		$result=mysqli_query($con, $sql);
-		if($result)
-		{
-			echo "Successfully register!";
-			//echo"<script type='text/javascript'>alert('Successfully register!');location='index.html';</script>";
-		}
-		else
-		{
-			//echo "Fail to register. Please try again.";
-			//echo "<a href='signup.html'>Back</a>";
-			echo"<script type='text/javascript'>alert('Fail to register. Please try again.');location='signup.html';</script>";
-		}
+		add_user($email, $username, $password, $gender, $birthdate, $region);
+		$user=userdata($email);
+		$_SESSION['userid']=$user['userID'];
+		//echo "Successfully register!";
+		echo"<script type='text/javascript'>alert('Successfully register!');location='index.php';</script>";
+		
 	}
 }
 ?>

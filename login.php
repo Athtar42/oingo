@@ -5,26 +5,27 @@ require_once("functions.php");
 
 $email=$_POST['email'];
 $password=$_POST['password'];
-if(($email=='')||($password=='')) //邮箱或密码为空
+if(($email=='')||($password=='')) //email or psw empty
 {
-	echo "Email or password can not be empty!<br>";
+	//echo "Email or password can not be empty!<br>";
 	echo "<script type='text/javascript'>alert('Email or password can not be empty!');location='login.html';
 			</script>";
-	//返回login.php
+	//back to login
 }
 else
 {
-	$user=userdata($email);
+	$user=userdata($email); //get a tuple of user
 	if(($user['email']==$email)&&($user['password']==$password))
 	{
 		$_SESSION['userid']=$user['userID'];
-		echo"<script type='text/javascript'>alert('Success');location='homepage.php';</script>";
-		//登陆成功，跳转到主页
+		$_SESSION['email']=$user['email'];
+		echo"<script type='text/javascript'>alert('Success');location='index.php';</script>";
+		//successfully login, turn to homepage
 	}
 	else 
 	{
-		echo"<script type='text/javascript'>alert('Wrong password！Please enter again！');</script>";
-		//密码错误，返回login.php
+		echo"<script type='text/javascript'>alert('Wrong password！Please enter again！');location='login.html';</script>";
+		//wrong psw, back to login
 	}
 }
 

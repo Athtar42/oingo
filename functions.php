@@ -22,32 +22,78 @@ function userdata($getemail)
 	return $user;
 }
 
+function add_user($email, $username, $password, $gender, $birthdate, $region)
+{
+	global $con;
+	$sql1="insert into user values ('', '$email', '$username', '$password', '$gender', '$birthdate', '$region')";
+	//userID改成自动增加的
+	$result1=mysqli_query($con, $sql1);
+	$user=mysqli_fetch_array($result1);
+	//add state
+	$sql2="insert into state values ('$user['userID']', 'default')";
+	$result2=mysqli_query($con, $sql2);
+	//add current
+	//$sql="insert into current values ('$user['userID']', 'default')";
+	//$result=mysqli_query($con, $sql);
+	
+	//return $user;
+}
+
 //list the user's friends
 function friendlist($userid)
 {
-	require_once("connect.php");
+	global $con;
 	$userid=$_POST['userid']; //获取当前用户的ID
 	$sql="select friendship.userID2, user.fbsql_username
 	      from friendship join user on friendship.userID2=user.userID
 	      where friendship.userID2='$userid'";
-	$result=mysqli_query($sql);
+	$result=mysqli_query($con, $sql);
 	$friend=mysqli_fetch_array($result);
 	
 	return $friend;
 }
 
-function add_note($userid, $notetext, $notetime, $radius, $nrestrict, $nsID, $ifcomment)
+function add_note($userid, $notetext, $radius, $nrestrict, $nsID, $ifcomment)
 {
-	require_once("connect.php");
-	$sql="insert into 'note' values ('', '$userid', '$notetext', 'notetime', '$radius', '$nrestrict', '$nsID', '$ifcomment')";
+	global $con;
+	$sql="insert into 'note' values ('', '$userid', '$notetext', now(), '$radius', '$nrestrict', '$nsID', '$ifcomment')";
 	$result=mysql_query($sql);
 }
 
 function add_tag($noteid, $tag)
 {
-	require_once("connect.php");
+	global $con;
 	$sql="insert into 'tag' values ('$noteid', '$tag')";
 	$result=mysql_query($sql);
+}
+
+function add_schedule()
+{
+	global $con;
+	$sql="insert into 'schedule' values ('', '$startTime', '$endTime', '$startDate', '$Weekday', '$endDate', '$Repetition')";
+	$result=mysql_query($sql);
+}
+
+function check_username($username)
+{
+  global $con;
+	$sql="select count(*) from user where userName=$username";
+	$result=mysqli_query($sql);
+	$count=mysqli_fetch_array($result);
+	if($count!==0)
+	{
+		//echo "The userName has been occupied.";
+		echo"<script type='text/javascript'>alert('The userName has been occupied.');location='signup.html';</script>";
+	} 
+}
+
+function update_state($userid, $state)
+{
+	global $con;
+	$sql="update";
+	$result=mysqli_query($sql);
+	$new=mysqli_fetch_array($result);
+	$newstate=$new['state'];
 }
 
 ?>
