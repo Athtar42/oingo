@@ -61,7 +61,28 @@
 				<span class="text-light"><h1 class="display-4">OINGO</h1></span>
 			</div>
 		</div>
-		
+		<div class="container">
+			<div class="row myCenter">
+				<div class="col-12 col-md-6 col-center-block">
+					<div class="card">
+						<div class="card-body" style="width: 21rem;">
+							<h5 class="card-title">Test</h5>
+							<form name="test" action="#" method="post" class="">
+								<div class="form-group">
+									<label for="currenttime">Setting Current Time</label> 
+									<input type="datetime" name="currenttime" class="form-control">
+								</div>
+								<div class="form-group">
+									<label for="currentlocation">Location</label> 
+									<input type="text" name="currentlocation" class="form-control">
+								</div>
+								<button type="submit" name="submit" class="btn btn-primary">Save</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		
 		
 		

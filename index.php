@@ -74,7 +74,7 @@ if(!isset($_SESSION['userid']))
 		</div>
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-sm-6 col-md-3 col-12">
+				<div class="col-sm-12 col-md-3 col-12">
 					<div class="container">
 						<div class="card border-dark">
 							<div class="card-body">
@@ -88,7 +88,7 @@ if(!isset($_SESSION['userid']))
 					</div>
 					<!--Sidebar content-->
 				</div>
-				<div class="col-sm-6 col-md-9 col-12">
+				<div class="col-sm-12 col-md-9 col-12">
 					<div class="container">
 						<div class="card mb-3 border-primary">
 							<div class="card-header">
@@ -131,7 +131,7 @@ if(!isset($_SESSION['userid']))
 									</div>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
-											<label class="input-group-text" for="ifcomment">If allow commentï¼/label>
+											<label class="input-group-text" for="ifcomment">If allow comment?</label>
 										</div>
 										<select class="custom-select" id="ifcomment">
 											<option selected value="1">Allowed</option>
