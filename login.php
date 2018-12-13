@@ -5,6 +5,7 @@ require_once("functions.php");
 
 $email=$_POST['email'];
 $password=$_POST['password'];
+
 if(($email=='')||($password=='')) //email or psw empty
 {
 	//echo "Email or password can not be empty!<br>";

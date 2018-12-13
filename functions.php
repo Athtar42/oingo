@@ -15,9 +15,17 @@
 function userdata($getemail)
 {
 	global $con;
-	$sql="select * from user where email='$getemail'";
-	$result=mysqli_query($con, $sql);
-	$user=mysqli_fetch_array($result);
+	//$sql="select * from user where email='$getemail'";
+	//$result=mysqli_query($con, $sql);
+	//$user=mysqli_fetch_array($result);
+	
+	$stmt = $con->prepare('select * from user where email= ?');
+	$stmt->bind_param('s', $getemail);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	while ($row = $result->fetch_assoc()) {
+    $user=$row;
+	};
 
 	return $user;
 }
