@@ -43,10 +43,10 @@ else
 		//add state
 		$user=userdata($email);
 		$_SESSION['userid']=$user['userID'];
-		//$sql2="insert into state(userID, state) values ('$user['userID']', 'default')";
-		//$result2=mysqli_query($con, $sql2);
+		$sql2="insert into state(userID, state) values ('".$user['userID']."', 'default')";
+		$result2=mysqli_query($con, $sql2);
 		//echo "Successfully register!";
-		echo"<script type='text/javascript'>alert('Successfully register!');location='index.php';</script>";
+		echo"<script type='text/javascript'>alert('Successfully register!');</script>";//location='index.php'
 		
 	}
 }

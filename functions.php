@@ -25,9 +25,9 @@ function userdata($getemail)
 	$result = $stmt->get_result();
 	while ($row = $result->fetch_assoc()) {
     $user=$row;
+    return $user;
 	};
 
-	return $user;
 }
 /*
 function add_user($email, $username, $password, $gender, $birthdate, $region)
