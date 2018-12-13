@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： 127.0.0.1
--- 生成日期： 2018-12-11 23:37:59
+-- 生成日期： 2018-12-13 02:25:42
 -- 服务器版本： 10.1.37-MariaDB
 -- PHP 版本： 7.2.12
 
@@ -108,7 +108,6 @@ CREATE TABLE `friendship` (
 
 INSERT INTO `friendship` (`userID1`, `userID2`) VALUES
 (1, 4),
-(1, 8),
 (2, 3),
 (2, 4),
 (2, 5),
@@ -133,7 +132,6 @@ INSERT INTO `friendship` (`userID1`, `userID2`) VALUES
 (6, 7),
 (7, 5),
 (7, 6),
-(8, 1),
 (8, 5);
 
 -- --------------------------------------------------------
@@ -316,16 +314,19 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userID`, `email`, `userName`, `password`, `gender`, `birthDate`, `region`) VALUES
-(1, 'amorphisfan@gmail.com', 'amorphis', 'iloveamorphis', 'Male', '1996-10-23', 'Finland'),
-(2, 'mattbellamy@muse.mu', 'thehandler', 'simulationtheory', 'Male', '1978-06-09', 'United Kingdom'),
-(3, 'domhoward@muse.mu', 'bestdrummer', 'idontknowmatt', 'Male', '1977-12-07', 'United Kingdom'),
-(4, 'chriswolstenholme@muse.mu', 'kellyisthebest', 'wolstenholme', 'Male', '1978-12-02', 'United Kingdom'),
-(5, 'tomkirk@muse.mu', 'Absolution', 'dronestourdvd', 'Male', '1977-02-24', 'United Kingdom'),
-(6, 'chrismartin@coldplay.com', 'paradise', 'chrismartin1977', 'Male', '1977-03-02', 'United Kingdom'),
-(7, 'thomyorke@radiohead.com', 'thomyorke', 'ihatedom', 'Male', '1968-10-07', 'United Kingdom'),
-(8, 'petrilindroos@ensiferum.com', 'petriworrier', 'wintersunsucks', 'Male', '1980-01-10', 'Finland'),
+(1, 'amorphisfan@gmail.com', 'amorphis', 'iloveamorphis', 'male', '1996-10-23', 'Finland'),
+(2, 'mattbellamy@muse.mu', 'thehandler', 'simulationtheory', 'male', '1978-06-09', 'United Kingdom'),
+(3, 'domhoward@muse.mu', 'bestdrummer', 'idontknowmatt', 'male', '1977-12-07', 'United Kingdom'),
+(4, 'chriswolstenholme@muse.mu', 'kellyisthebest', 'wolstenholme', 'male', '1978-12-02', 'United Kingdom'),
+(5, 'tomkirk@muse.mu', 'Absolution', 'dronestourdvd', 'male', '1977-02-24', 'United Kingdom'),
+(6, 'chrismartin@coldplay.com', 'paradise', 'chrismartin1977', 'male', '1977-03-02', 'United Kingdom'),
+(7, 'thomyorke@radiohead.com', 'thomyorke', 'ihatedom', 'male', '1968-10-07', 'United Kingdom'),
+(8, 'petrilindroos@ensiferum.com', 'petriworrier', 'wintersunsucks', 'male', '1980-01-10', 'Finland'),
 (99, 'sym@gmail.com', 'sym', '123456', 'female', '2010-01-02', 'China'),
-(100, '123', '123', '12345', NULL, NULL, NULL);
+(100, '123', '123', '12345', NULL, NULL, NULL),
+(101, '123', '123', 'asdfgh', 'female', '2000-01-01', 'Barbados'),
+(102, '1', '1', '1', 'female', '2000-01-01', 'Bangladesh'),
+(103, '1', 'sym', '123', 'female', '2000-01-01', 'Bangladesh');
 
 -- --------------------------------------------------------
 
@@ -449,7 +450,7 @@ ALTER TABLE `schedule`
 -- 使用表AUTO_INCREMENT `user`
 --
 ALTER TABLE `user`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- 限制导出的表
