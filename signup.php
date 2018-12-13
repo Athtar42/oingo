@@ -38,8 +38,12 @@ else
 	else //注册成功录入数据库
 	{
 		//add_user($email, $username, $password, $gender, $birthdate, $region);
-		$sql1="insert into user(email, userName, password, gender, birthDate, region) values ('$email', '$username', '$password', '$gender', '$birthdate', '$region')";
-		$result1=mysqli_query($con, $sql1);
+		//$sql1="insert into user(email, userName, password, gender, birthDate, region) values ('$email', '$username', '$password', '$gender', '$birthdate', '$region')";
+		$sql1 = $con->prepare('insert into user(email, userName, password, gender, birthDate, region) values (?, ?, ?, ?, ?, ?)');
+		$sql1->bind_param('ssssss', $email, $username, $password, $gender, $birthdate, $region);
+		$sql1->execute();
+		$result1 = $sql1->get_result();
+		//$result1=mysqli_query($con, $sql1);
 		//add state
 		$user=userdata($email);
 		$_SESSION['userid']=$user['userID'];
