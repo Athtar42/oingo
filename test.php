@@ -76,8 +76,9 @@ if ((isset($_POST["currentlocation"]))&&(isset($_POST["gapi"]))){
     //)
 	//));
 	//$response = json_decode(file_get_contents($url, false, $context),true);
-	echo $response['results'][0]['geometry']['location']['lat'];
-	echo $response['results'][0]['geometry']['location']['lng'];
+	 
+	$lat= $response['results'][0]['geometry']['location']['lat'];
+	$lng= $response['results'][0]['geometry']['location']['lng'];
 }
 else{
 	//echo "<script type='text/javascript'>alert('Location or API can not be empty!')</script>";
@@ -93,16 +94,39 @@ else{
 							<h5 class="card-title">Test</h5>
 							<form name="test" action="test.php" method="post" class="">
 								<div class="form-group">
-									<label for="currenttime">Setting Current Time</label> 
-									<input type="datetime-local" name="currenttime" class="form-control">
-								</div>
-								<div class="form-group">
 									<label for="currentlocation">Location</label> 
 									<input type="text" name="currentlocation" class="form-control">
 								</div>
 								<div class="form-group">
 									<label for="gapi">API</label> 
 									<input type="text" name="gapi" class="form-control">
+								</div>
+								<button type="submit" name="submit" class="btn btn-primary">Search</button>
+							</form>
+							<form name="test" action=".php" method="post" class="">
+								<div class="form-group">
+									<label for="currenttime">Setting Current Time</label> 
+									<input type="datetime-local" name="currenttime" class="form-control">
+								</div>								
+								<div class="form-group">
+									<label for="lat">Latitude</label> 
+									<input type="text" name="lat" class="form-control"
+										<?php 
+											if (isset($lat)){
+											echo "value='".$lat."'";
+											};
+										?>
+										>
+								</div>
+								<div class="form-group">
+									<label for="lng">Longitude</label> 
+									<input type="text" name="lng" class="form-control"
+										<?php 
+											if (isset($lng)){
+											echo "value='".$lng."'";
+											};											
+										?>										
+										>
 								</div>
 								<button type="submit" name="submit" class="btn btn-primary">Save</button>
 							</form>
@@ -111,7 +135,6 @@ else{
 				</div>
 			</div>
 		</div>
-		
 		
 		
 		<script src="js/jquery-3.3.1.js"></script>
