@@ -14,13 +14,15 @@ if(!$con)
 }
 $userid=$_SESSION['userid'];
 $state=$_POST['state'];
-$password=$_POST['password'];
-$confirm=$_POST['confirm'];
+
 $gender=$_POST['gender'];
 $birthdate=$_POST['birthdate'];
 $region=$_POST['region'];
 
-if()
+if((isset($_POST["password"]))&&(isset($_POST["confirm"]))){
+	$password=$_POST['password'];
+	$confirm=$_POST['confirm'];
+
 if($password==$confirm) 
 {
 	//update state
@@ -47,5 +49,34 @@ else
 {
 	echo "<script type='text/javascript'>alert('The passwords you typed do not match. Please enter again.');location='setting.php';</script>";
 }
+
+}
+else{
+	
+	$sql1 = $con->prepare('update state set state=? where userID=?');
+	$sql1->bind_param('ss', $state, $userid);
+	$sql1->execute();
+	$result1 = $sql1->get_result();
+	//$result1=mysqli_query($con, $sql1);
+	//update profile
+	//$sql2="update user set password='$password', gender='$gender', birthdate='$birthdate', region='$region' where userID='$userid'";
+	//$result2=mysqli_query($con, $sql2);
+	$sql2 = $con->prepare('update user set gender=?, birthdate=?, region=? where userID=?');
+	$sql2->bind_param('ssss', $gender, $birthdate, $region, $userid);
+	$sql2->execute();
+	$result2 = $sql2->get_result();
+	
+	if($result1&&$result2)
+	{
+		echo "<script type='text/javascript'>alert('You have changed profile successfully!');location='setting.php';</script>";
+	}
+}
+else
+{
+	echo "<script type='text/javascript'>alert('The passwords you typed do not match. Please enter again.');location='setting.php';</script>";
+}
+	
+}
+
 
 ?>

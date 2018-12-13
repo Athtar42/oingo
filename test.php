@@ -90,6 +90,10 @@ else{
 			<div class="row myCenter">
 				<div class="col-8 col-md-6 col-lg-4 col-center-block">
 					<div class="card">
+						
+						
+					</div>	
+					<div class="card">
 						<div class="card-body">
 							<h5 class="card-title">Test</h5>
 							<form name="test" action="test.php" method="post" class="">
