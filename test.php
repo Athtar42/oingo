@@ -88,7 +88,7 @@ else{
 ?>
 		<div class="container">
 			<div class="row myCenter">
-				<div class="col-8 col-md-6 col-lg-4 col-center-block">
+				<div class="col-center-block">
 					<div class="card">
 						
 						
@@ -96,41 +96,58 @@ else{
 					<div class="card">
 						<div class="card-body">
 							<h5 class="card-title">Test</h5>
+							
+								<form>
+									<div class="form-group row">
+    									<label for="staticTime" class="col-sm-4 col-form-label">Setted Time</label>
+    									<div class="col-sm-8">
+     										<input type="datetime-local" readonly class="form-control-plaintext" id="staticTime" value="">
+    									</div>
+  									</div>
+									<div class="form-group row">
+    									<label for="staticLocation" class="col-sm-4 col-form-label">Current location</label>
+    									<div class="col-sm-8">
+    										<input type="text" readonly class="form-control" id="staticLocation" value="">
+    									</div>
+									</div>
+								</form>
+								
+							
 							<form name="test" action="test.php" method="post" class="">
-								<div class="form-group">
-									<label for="currentlocation">Location</label> 
-									<input type="text" name="currentlocation" class="form-control">
+								<div class="form-group row">
+									<label for="currentlocation" class="col-sm-4 col-form-label">Location</label> 
+									<div class="col-sm-8"><input type="text" name="currentlocation" class="form-control"></div>
 								</div>
-								<div class="form-group">
-									<label for="gapi">API</label> 
-									<input type="text" name="gapi" class="form-control">
+								<div class="form-group row">
+									<label for="gapi" class="col-sm-4 col-form-label">API</label> 
+									<div class="col-sm-8"><input type="text" name="gapi" class="form-control"></div>
 								</div>
 								<button type="submit" name="submit" class="btn btn-primary">Search</button>
 							</form>
 							<form name="test" action=".php" method="post" class="">
-								<div class="form-group">
-									<label for="currenttime">Setting Current Time</label> 
-									<input type="datetime-local" name="currenttime" class="form-control">
+								<div class="form-group row">
+									<label for="currenttime" class="col-sm-4 col-form-label">Setting Time</label> 
+									<div class="col-sm-8"><input type="datetime-local" name="currenttime" class="form-control"></div>
 								</div>								
-								<div class="form-group">
-									<label for="lat">Latitude</label> 
-									<input type="text" name="lat" class="form-control"
+								<div class="form-group row">
+									<label for="lat" class="col-sm-4 col-form-label">Latitude</label> 
+									<div class="col-sm-8"><input type="text" name="lat" class="form-control"
 										<?php 
 											if (isset($lat)){
 											echo "value='".$lat."'";
 											};
 										?>
-										>
+										></div>
 								</div>
-								<div class="form-group">
-									<label for="lng">Longitude</label> 
-									<input type="text" name="lng" class="form-control"
+								<div class="form-group row">
+									<label for="lng" class="col-sm-4 col-form-label">Longitude</label> 
+									<div class="col-sm-8"><input type="text" name="lng" class="form-control"
 										<?php 
 											if (isset($lng)){
 											echo "value='".$lng."'";
 											};											
 										?>										
-										>
+										></div>
 								</div>
 								<button type="submit" name="submit" class="btn btn-primary">Save</button>
 							</form>
