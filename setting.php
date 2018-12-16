@@ -103,22 +103,22 @@ $state=statedata($user['userID']);
 									<legend class="col-form-label col-sm-4 pt-0" class="col-sm-2 col-form-label">Gender</legend>
 								<div class="col-sm-8">
 									<?php
-									if($user['gender']=='female')
+									if($user['gender']=='male')
 									{
 										echo '<div class="form-check">';
-											echo '<input type="radio" name="gender" value="male" class="form-check-input" checked><label for="gender" class="form-check-label ">Female</label>';
+											echo '<input type="radio" name="gender" value="male" class="form-check-input" checked><label for="gender" class="form-check-label ">Male</label>';
 										echo '</div>';
 										echo '<div class="form-check">';
-											echo '<input type="radio" name="gender" value="female" class="form-check-input"><label for="gender" class="form-check-label">Male</label>';
+											echo '<input type="radio" name="gender" value="female" class="form-check-input"><label for="gender" class="form-check-label">Female</label>';
 										echo '</div>';
 									}
 									else
 									{
 										echo '<div class="form-check">';
-											echo '<input type="radio" name="gender" value="male" class="form-check-input"><label for="gender" class="form-check-label ">Female</label>';
+											echo '<input type="radio" name="gender" value="male" class="form-check-input"><label for="gender" class="form-check-label ">Male</label>';
 										echo '</div>';
 										echo '<div class="form-check">';
-											echo '<input type="radio" name="gender" value="female" class="form-check-input" checked><label for="gender" class="form-check-label">Male</label>';
+											echo '<input type="radio" name="gender" value="female" class="form-check-input" checked><label for="gender" class="form-check-label">Female</label>';
 										echo '</div>';
 									}
 									?>
