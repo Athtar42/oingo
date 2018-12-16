@@ -1,8 +1,29 @@
 <?php
 session_start();
+require_once("functions.php");
+$server="localhost";
+$db_username="root";
+$db_password="";
+$db_name="proj1"; 
+	$con=mysqli_connect($server, $db_username, $db_password, $db_name);
+if(!$con)
+{
+	die("can't connect".mysqli_error());
+}
 if(!isset($_SESSION['userid']))
 {
 	echo"<script type='text/javascript'>;location='login.html';</script>";
+}
+else
+{
+	$userid=$_SESSION['userid'];
+	$email=$_SESSION['email'];
+	$user=userdata($email);
+	$state=statedata($userid);
+	
+	$sql="select * from note";
+	$result=mysqli_query($con, $sql);
+	$row=mysqli_num_rows($result);
 }
 ?>
 
@@ -32,14 +53,14 @@ if(!isset($_SESSION['userid']))
 
 		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 
-			<a class="navbar-brand" href="index.html">OINGO</a>
+			<a class="navbar-brand" href="index.php">OINGO</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     				<span class="navbar-toggler-icon"></span>
   				</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item active">
-						<a class="nav-link" href="index.html">OINGO<span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="index.php">OINGO<span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -78,11 +99,13 @@ if(!isset($_SESSION['userid']))
 					<div class="container">
 						<div class="card border-dark">
 							<div class="card-body">
-								<h5 class="card-title">Username</h5>
-								<p class="card-text">Gender</p>
-								<p class="card-text">Birthdate</p>
-								<p class="card-text">Region</p>
-								<p class="card-text">State</p>
+								<?php
+								echo "<h5 class='card-title'>".$user['userName']."</h5>";
+								echo "<p class='card-text'>".$user['gender']."</p>";
+								echo "<p class='card-text'>".$user['birthDate']."</p>";
+								echo "<p class='card-text'>".$user['region']."</p>";
+								echo "<p class='card-text'>".$state['state']."</p>";
+								?>
 							</div>
 						</div>
 					</div>
@@ -95,7 +118,7 @@ if(!isset($_SESSION['userid']))
 								New Note
 							</div>
 							<div class="card-body">
-								<form name="note" action="" method="post">
+								<form name="note" action="post.php" method="post">
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<span class="input-group-text">Text</span>
@@ -106,7 +129,7 @@ if(!isset($_SESSION['userid']))
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon">Tags (use space seperate)</span>
 										</div>
-										<input type="text" class="form-control" id="tags" aria-describedby="basic-addon3">
+										<input type="text" class="form-control" id="tag" aria-describedby="basic-addon3">
 									</div>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
@@ -131,120 +154,114 @@ if(!isset($_SESSION['userid']))
 									</div>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
-											<label class="input-group-text" for="ifcomment">If allow comment?</label>
+											<label class="input-group-text" for="ifcomment">If allow commentï¼/label>
 										</div>
 										<select class="custom-select" id="ifcomment">
 											<option selected value="1">Allowed</option>
 											<option value="0">Not Allow</option>
 										</select>
 									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="startdate">Start Date</label>
+										</div>
+										<input type="date" class="form-control" id="startdate" name="startdate" aria-describedby="basic-addon">
+									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="enddate">End Date</label>
+										</div>
+										<input type="date" class="form-control" id="enddate" name="enddate" aria-describedby="basic-addon">
+									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="starttime">Start Time</label>
+										</div>
+										<input type="time" class="form-control" id="starttime" name="starttime" aria-describedby="basic-addon">
+									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="starttime">End Time</label>
+										</div>
+										<input type="time" class="form-control" id="endtime" name="endtime" aria-describedby="basic-addon">
+									</div>				
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="repetition">Repitition</label>
+										</div>
+										<select class="custom-select" id="repetiton">
+											<option selected value="no">No Repitition</option>
+											<option value="daily">Daily</option>
+											<option value="weekly">Weekly</option>
+											<option value="monthly">Monthly</option>
+										</select>
+									</div>		
+										
+										
+										
+										
+										
+									
 									<button type="submit" name="submit" value="submit" class="btn btn-primary mb-2">Post</button>
 								</form>
 							</div>
 						</div>
-						<div class="card mb-3 border-primary">
-							<div class="card-header">
-								Username
-							</div>
-							<div class="card-body">
-								<h6 class="card-subtitle mb-2 text-muted">Placename + Location</h6>
-								<p class="card-text text-primary">notetext</p>
-								<a href="#" class="card-link">#tag1</a>
-								<a href="#" class="card-link">#tag2</a>
-
-							</div>
-							<div>
-								<ul class="list-group list-group-flush">
-									<li class="list-group-item">
-										<form name="comment" action="" method="post">
-											<div class="row">
-												<div class="col-10">
-													<input type="text" name="state" class="form-control" placeholder="Input Comment">
-												</div>
-												<div class="col-2">
-													<button type="submit" name="submit" value="submit" class="btn btn-primary mb-2">Comment</button>
-												</div>
-											</div>
-										</form>
-									</li>
-									<li class="list-group-item">Username: + Comment</li>
-									<li class="list-group-item">Username: + Comment</li>
-									<li class="list-group-item">Username: + Comment</li>
-									<li class="list-group-item">Username: + Comment</li>
-								</ul>
-							</div>
-						</div>
-						<div class="card mb-3 border-primary">
-							<div class="card-header">
-								Username
-							</div>
-							<div class="card-body">
-
-								<h6 class="card-subtitle mb-2 text-muted">Placename + Location</h6>
-								<p class="card-text text-primary">notetext</p>
-								<a href="#" class="card-link">#tag1</a>
-								<a href="#" class="card-link">#tag2</a>
-							</div>
-						</div>
-						<div class="card mb-3 border-primary">
-							<div class="card-header">
-								Username
-							</div>
-							<div class="card-body">
-
-								<h6 class="card-subtitle mb-2 text-muted">Placename + Location</h6>
-								<p class="card-text text-primary">notetext</p>
-								<a href="#" class="card-link">#tag1</a>
-								<a href="#" class="card-link">#tag2</a>
-							</div>
-						</div>
-						<div class="card mb-3 border-primary">
-							<div class="card-header">
-								Username
-							</div>
-							<div class="card-body">
-
-								<h6 class="card-subtitle mb-2 text-muted">Placename + Location</h6>
-								<p class="card-text text-primary">notetext</p>
-								<a href="#" class="card-link">#tag1</a>
-								<a href="#" class="card-link">#tag2</a>
-							</div>
-						</div>
-						<div class="card mb-3 border-primary">
-							<div class="card-header">
-								Username
-							</div>
-							<div class="card-body">
-
-								<h6 class="card-subtitle mb-2 text-muted">Placename + Location</h6>
-								<p class="card-text">notetext</p>
-								<a href="#" class="card-link">#tag1</a>
-								<a href="#" class="card-link">#tag2</a>
-							</div>
-						</div>
-						<div class="card mb-3 border-primary">
-							<div class="card-header">
-								Username
-							</div>
-							<div class="card-body text-primary">
-								<h6 class="card-subtitle mb-2 text-muted">Placename + Location</h6>
-								<p class="card-text">notetext</p>
-								<a href="#" class="card-link">#tag1</a>
-								<a href="#" class="card-link">#tag2</a>
-							</div>
-						</div>
-						<div class="card mb-3 border-primary">
-							<div class="card-header">
-								Username
-							</div>
-							<div class="card-body text-primary">
-
-								<h6 class="card-subtitle mb-2 text-muted">Placename + Location</h6>
-								<p class="card-text">notetext</p>
-								<a href="#" class="card-link">#tag1</a>
-								<a href="#" class="card-link">#tag2</a>
-							</div>
-						</div>
+						<?php
+						for($i=0;$i<$row;$i++)
+						{
+							$note=mysqli_fetch_array($result);
+							$sql1="select userName from user where userID=".$note['userID'];
+							$result1=mysqli_query($con, $sql1);
+							$sql2="select tag from tag where noteID=".$note['noteID'];
+							$result2=mysqli_query($con, $sql2);
+							$username=mysqli_fetch_array($result1);
+							$tagrow=mysqli_num_rows($result2);
+						    echo "<div class='card mb-3 border-primary'>";
+							echo "<div class='card-header'>";
+								echo $username['userName'];
+							echo "</div>";
+							echo "<div class='card-body'>";
+								echo "<h6 class='card-subtitle mb-2 text-muted'>".$note['nAddress']."</h6>";
+								echo "<p class='card-text text-primary'>".$note['noteText']."</p>";
+								for($j=0;$j<$tagrow;$j++)
+								{
+									$tag=mysqli_fetch_array($result2);
+									echo "<a href='#' class='card-link'>".$tag['tag']."</a>";
+								}
+							echo "</div>";
+							$sql3="select * from comment where noteID=".$note['noteID'];
+						    $result3=mysqli_query($con, $sql3);
+							$commentrow=mysqli_num_rows($result3);
+							echo "<div>";
+								echo "<ul class='list-group list-group-flush'>";	
+								echo "<li class='list-group-item'>";
+									echo "<form name='comment' action='comment.php' method='post'>";
+										echo "<div class='row'>";
+											echo "<div class='col-10'>";
+												echo "<input type='text' name='text' class='form-control' placeholder='Input Comment'>";
+											echo "</div>";
+											echo "<div class='col-2'>";
+												echo "<button type='submit' name='submit' value='submit' class='btn btn-primary mb-2'>Comment</button>";
+											echo "</div>";
+										echo "</div>";
+									echo "</form>";
+								echo "</li>";
+								for($n=0;$n<$commentrow;$n++)
+								{
+									$comment=mysqli_fetch_array($result3);
+									$sql4="select userName from user where userID=".$comment['userID'];
+									$result4=mysqli_query($con, $sql4);
+									$name=mysqli_fetch_array($result4);
+									echo "<li class='list-group-item'>".$name['userName']." : ".$comment['cText']."</li>";
+								}
+									echo "</ul>";
+								echo "</div>";
+							echo "</div>";
+							
+							
+						}
+						?>
+						
 					</div>
 					<!--Body content-->
 				</div>
