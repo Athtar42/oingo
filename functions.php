@@ -111,4 +111,14 @@ function dividetag($tag)
 	return $tags;
 }
 
+function getweekday($date)
+{
+	$weekday=date("w", $date);
+	if($weekday==0)
+	{
+		$weekday=7;
+	}
+	
+	return $weekday;
+}
 ?>

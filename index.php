@@ -187,7 +187,7 @@ else
 									</div>				
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
-											<label class="input-group-text" for="repetition">Repitition</label>
+											<label class="input-group-text" for="repetition">Repetition</label>
 										</div>
 										<select class="custom-select" id="repetiton">
 											<option selected value="no">No Repitition</option>
