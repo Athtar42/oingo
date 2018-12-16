@@ -28,11 +28,9 @@ if(($email=="")||($password=="")||($username=="")||($confirm=="")||($gender=="")
 }
 else
 {
-	//check_username($username);
+	check_username($username);
 	if($password!=$confirm) //验证两次密码
 	{
-		//echo "The passwords you typed do not match. Please enter again.";
-		//echo "<a href='signup.html'>Back</a>";
 		echo"<script type='text/javascript'>alert('The passwords you typed do not match. Please enter again.');location='signup.html';</script>";
 	}
 	else //注册成功录入数据库
@@ -49,9 +47,14 @@ else
 		$_SESSION['userid']=$user['userID'];
 		$sql2="insert into state(userID, state) values ('".$user['userID']."', 'default')";
 		$result2=mysqli_query($con, $sql2);
-		//echo "Successfully register!";
-		echo"<script type='text/javascript'>alert('Successfully register!');</script>";//location='index.php'
-		
+		if($result1&&$result2)
+		{
+			echo"<script type='text/javascript'>alert('Successfully register!');location='index.php';</script>";
+		}
+		else
+		{
+			echo"<script type='text/javascript'>alert('Fail to register!');location='index.php';</script>";
+		}
 	}
 }
 ?>
