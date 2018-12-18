@@ -89,9 +89,7 @@ else{
 		<div class="container">
 			<div class="row myCenter">
 				<div class="col-center-block">
-					<div class="card">
-						
-						
+					<div class="card">						
 					</div>	
 					<div class="card">
 						<div class="card-body">
@@ -99,7 +97,7 @@ else{
 							
 								<form>
 									<div class="form-group row">
-    									<label for="staticTime" class="col-sm-4 col-form-label">Setted Time</label>
+    									<label for="staticTime" class="col-sm-4 col-form-label">Setted Time</label> 
     									<div class="col-sm-8">
      										<input type="datetime-local" readonly class="form-control-plaintext" id="staticTime" value="">
     									</div>
