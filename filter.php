@@ -229,7 +229,7 @@ $row=mysqli_num_rows($result);
 										switch ($schedule['repetition'])
 										{
 											case "no":
-												echo '<select class="custom-select" id="repetiton">';
+												echo '<select name="repetition" class="custom-select" id="repetiton">';
 													echo '<option selected value="no">No Repetition</option>';
 													echo '<option value="daily">Daily</option>';
 													echo '<option value="weekly">Weekly</option>';
@@ -237,7 +237,7 @@ $row=mysqli_num_rows($result);
 												echo '</select>';
 												break;
 											case "daily":
-												echo '<select class="custom-select" id="repetiton">';
+												echo '<select name="repetition" class="custom-select" id="repetiton">';
 													echo '<option value="no">No Repetition</option>';
 													echo '<option selected value="daily">Daily</option>';
 													echo '<option value="weekly">Weekly</option>';
@@ -245,7 +245,7 @@ $row=mysqli_num_rows($result);
 												echo '</select>';
 												break;
 											case "weekly":
-												echo '<select class="custom-select" id="repetiton">';
+												echo '<select name="repetition" class="custom-select" id="repetiton">';
 													echo '<option value="no">No Repetition</option>';
 													echo '<option value="daily">Daily</option>';
 													echo '<option selected value="weekly">Weekly</option>';
@@ -253,7 +253,7 @@ $row=mysqli_num_rows($result);
 												echo '</select>';
 												break;
 											case "monthly":
-												echo '<select class="custom-select" id="repetiton">';
+												echo '<select name="repetition" class="custom-select" id="repetiton">';
 													echo '<option value="no">No Repetition</option>';
 													echo '<option value="daily">Daily</option>';
 													echo '<option value="weekly">Weekly</option>';
@@ -268,7 +268,7 @@ $row=mysqli_num_rows($result);
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon">Tag</span>
 										</div>
-										<input type="text" class="form-control" id="tag" value="<?php echo '#'.$filter['fTag']; ?>" aria-describedby="basic-addon">
+										<input type="text" class="form-control" id="tag" name="tag"  value="<?php echo '#'.$filter['fTag']; ?>" aria-describedby="basic-addon">
 									</div>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
@@ -278,21 +278,21 @@ $row=mysqli_num_rows($result);
 										switch ($filter['fRestrict'])
 										{
 											case "all":
-												echo '<select class="custom-select" id="restrict">';
+												echo '<select name="restrict" class="custom-select" id="restrict">';
 													echo '<option selected value="all">Everyone</option>';
 													echo '<option value="friends">Only Friends</option>';
 													echo '<option value="self">Only Myself</option>';
 												echo '</select>';
 												break;
 											case "friends":
-												echo '<select class="custom-select" id="restrict">';
+												echo '<select name="restrict" class="custom-select" id="restrict">';
 													echo '<option value="all">Everyone</option>';
 													echo '<option selected value="friends">Only Friends</option>';
 													echo '<option value="self">Only Myself</option>';
 												echo '</select>';
 												break;
 											case "self":
-												echo '<select class="custom-select" id="restrict">';
+												echo '<select name="restrict" class="custom-select" id="restrict">';
 													echo '<option value="all">Everyone</option>';
 													echo '<option value="friends">Only Friends</option>';
 													echo '<option selected value="self">Only Myself</option>';
@@ -305,7 +305,7 @@ $row=mysqli_num_rows($result);
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon">State</span>
 										</div>
-										<input type="text" class="form-control" id="State" name="State" aria-describedby="basic-addon" value="<?php echo $filter['fState']?>">
+										<input type="text" class="form-control" id="State" name="state" aria-describedby="basic-addon" value="<?php echo $filter['fState']?>">
 									</div>
 									<fieldset class="form-group">
 										<div class="row">

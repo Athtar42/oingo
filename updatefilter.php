@@ -58,10 +58,10 @@ $sid=$schedule['sID'];
 //	   values ('$userid', '$tag', '$sid', '$restrict', '$apply', '$lat', '$lng')";
 //$result=mysqli_query($con, $sql);
 $sql = $con->prepare('Update filter set userID = ?, fTag = ?, fsID = ?, fRestrict = ?, apply = ?, fLatitude = ?, fLongitude = ?, fState = ? where filterID ='.$filterID);
-$sql->bind_param('sssssss', $userid, $tag, $sid, $restrict, $apply, $lat, $lng, $state);
+$sql->bind_param('ssssssss', $userid, $tag, $sid, $restrict, $apply, $lat, $lng, $state);
 $sql->execute();
 $result = $sql->get_result();
-echo "<script type='text/javascript'>alert('Filter Updated!');location='filter.php';</script>";
+echo "<script type='text/javascript'>alert('Filter Updated!');</script>";//location='filter.php';
 
 
 ?>
