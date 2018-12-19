@@ -239,6 +239,7 @@ else
 									echo "<form name='comment' action='comment.php' method='post'>";
 										echo "<div class='row'>";
 											echo "<div class='col-10'>";
+												echo "<input type='hidden' name='noteid' value='".$$note['noteID']."'>"
 												echo "<input type='text' name='text' class='form-control' placeholder='Input Comment'>";
 											echo "</div>";
 											echo "<div class='col-2'>";
