@@ -71,7 +71,7 @@ if(!$con)
 	$num=count($tags);
 	for($i=1;$i<$num;$i++)
 	{
-		$sql="insert into tag values ('$noteid', '#".$tags[$i]."')";
+		$sql="insert into tag values ('$noteid', '".$tags[$i]."')";
 		$result=mysqli_query($con, $sql);
 	}
 	
