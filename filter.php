@@ -268,7 +268,7 @@ $row=mysqli_num_rows($result);
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon">Tag</span>
 										</div>
-										<input type="text" class="form-control" id="tag" name="tag"  value="<?php echo '#'.$filter['fTag']; ?>" aria-describedby="basic-addon">
+										<input type="text" class="form-control" id="tag" name="tag"  value="<?php echo $filter['fTag']; ?>" aria-describedby="basic-addon">
 									</div>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
@@ -335,7 +335,7 @@ $row=mysqli_num_rows($result);
 										</div>
 									</fieldset>
 									<button type="submit" name="submit" value="submit" class="btn btn-primary mb-2">Change</button>
-									<a href="deletefilter.php/?filterID='<?php echo $filterID?>'">  Delete</a>
+									<a href="deletefilter.php/?filterID='<?php echo $filterID?>'">Change</a>
 								</form>
 							
 						</div>			

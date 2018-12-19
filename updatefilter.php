@@ -61,7 +61,7 @@ $sql = $con->prepare('Update filter set userID = ?, fTag = ?, fsID = ?, fRestric
 $sql->bind_param('ssssssss', $userid, $tag, $sid, $restrict, $apply, $lat, $lng, $state);
 $sql->execute();
 $result = $sql->get_result();
-echo "<script type='text/javascript'>alert('Filter Updated!');</script>";//location='filter.php';
+echo "<script type='text/javascript'>alert('Filter Updated!');location='filter.php';</script>";
 
 
 ?>
