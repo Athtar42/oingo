@@ -45,7 +45,7 @@ else
 	//add note
 	$sql1="insert into note (userID, noteText, noteTime, radius, nRestrict, nsID, ifComment) 
 	      values ('$userid', '$text', '$time', '$radius', '$restirct', '$sid', '$ifcomment')";
-  $result1=mysqli_query($con, $sql1);
+  	$result1=mysqli_query($con, $sql1);
 	$sql2="select noteID from note where userID='$userid' and noteTime='$time'";
 	$result2=mysqli_query($con, $sql2);
 	$note=mysqli_fetch_array($result2);

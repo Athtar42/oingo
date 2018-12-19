@@ -335,6 +335,7 @@ $row=mysqli_num_rows($result);
 										</div>
 									</fieldset>
 									<button type="submit" name="submit" value="submit" class="btn btn-primary mb-2">Change</button>
+									<a href="deletefilter.php/?filterID='<>'">Change</a>
 								</form>
 							
 						</div>			
