@@ -63,6 +63,6 @@ $sql = $con->prepare('insert into filter (userID, fTag, fsID, fRestrict, apply, 
 $sql->bind_param('ssssssss', $userid, $tag, $sid, $restrict, $apply, $lat, $lng, $state);
 $sql->execute();
 $result = $sql->get_result();
-echo "<script type='text/javascript'>alert('Successfully add a filter!');</script>";//location='filter.php';
+echo "<script type='text/javascript'>alert('Successfully add a filter!');location='filter.php';</script>";
 
 ?>
