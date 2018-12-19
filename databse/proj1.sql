@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： 127.0.0.1
--- 生成日期： 2018-12-13 02:25:42
+-- 生成日期： 2018-12-19 17:52:05
 -- 服务器版本： 10.1.37-MariaDB
 -- PHP 版本： 7.2.12
 
@@ -54,18 +54,22 @@ CREATE TABLE `current` (
   `cTime` datetime NOT NULL,
   `cWeekday` int(11) NOT NULL,
   `cLongitude` decimal(10,7) NOT NULL,
-  `cLatitude` decimal(10,7) NOT NULL
+  `cLatitude` decimal(10,7) NOT NULL,
+  `cLocation` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- 转存表中的数据 `current`
 --
 
-INSERT INTO `current` (`userID`, `cTime`, `cWeekday`, `cLongitude`, `cLatitude`) VALUES
-(1, '2018-11-29 12:53:35', 3, '60.1683968', '24.9520721'),
-(2, '2018-11-29 12:53:35', 3, '33.9415630', '-118.4070620'),
-(3, '2018-11-29 12:53:35', 3, '33.9415630', '-118.4070620'),
-(4, '2018-11-29 12:53:35', 3, '33.9415630', '-118.4070620');
+INSERT INTO `current` (`userID`, `cTime`, `cWeekday`, `cLongitude`, `cLatitude`, `cLocation`) VALUES
+(1, '2018-11-29 12:53:35', 3, '60.1683968', '24.9520721', ''),
+(2, '2018-11-29 12:53:35', 3, '-118.4070620', '33.9415630', ''),
+(3, '2018-11-29 12:53:35', 3, '-118.4070620', '33.9415630', ''),
+(4, '2018-11-29 12:53:35', 3, '-118.4070620', '33.9415630', ''),
+(108, '2000-01-01 00:00:00', 6, '0.0000000', '0.0000000', 'default'),
+(109, '2000-01-01 00:00:00', 6, '0.0000000', '0.0000000', 'default'),
+(110, '2000-01-01 00:00:00', 6, '0.0000000', '0.0000000', 'default');
 
 -- --------------------------------------------------------
 
@@ -81,15 +85,18 @@ CREATE TABLE `filter` (
   `fsID` int(11) DEFAULT NULL,
   `fLatitude` decimal(10,7) DEFAULT NULL,
   `fLongitude` decimal(10,7) DEFAULT NULL,
-  `fRestrict` varchar(45) DEFAULT NULL
+  `fRestrict` varchar(45) DEFAULT NULL,
+  `apply` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- 转存表中的数据 `filter`
 --
 
-INSERT INTO `filter` (`filterID`, `userID`, `fState`, `fTag`, `fsID`, `fLatitude`, `fLongitude`, `fRestrict`) VALUES
-(1, 2, 'default', 'food', 7, '33.9415630', '-118.4070620', 'all');
+INSERT INTO `filter` (`filterID`, `userID`, `fState`, `fTag`, `fsID`, `fLatitude`, `fLongitude`, `fRestrict`, `apply`) VALUES
+(1, 2, 'default', 'food', 7, '33.9415630', '-118.4070620', 'all', 0),
+(14, 108, NULL, '', 16, NULL, NULL, 'friends', 1),
+(15, 108, NULL, '', 17, NULL, NULL, 'all', 0);
 
 -- --------------------------------------------------------
 
@@ -108,6 +115,7 @@ CREATE TABLE `friendship` (
 
 INSERT INTO `friendship` (`userID1`, `userID2`) VALUES
 (1, 4),
+(1, 108),
 (2, 3),
 (2, 4),
 (2, 5),
@@ -115,6 +123,7 @@ INSERT INTO `friendship` (`userID1`, `userID2`) VALUES
 (3, 2),
 (3, 4),
 (3, 5),
+(3, 108),
 (4, 2),
 (4, 3),
 (4, 5),
@@ -126,13 +135,19 @@ INSERT INTO `friendship` (`userID1`, `userID2`) VALUES
 (5, 6),
 (5, 7),
 (5, 8),
+(5, 108),
 (6, 2),
 (6, 4),
 (6, 5),
 (6, 7),
 (7, 5),
 (7, 6),
-(8, 5);
+(8, 5),
+(8, 108),
+(108, 1),
+(108, 3),
+(108, 5),
+(108, 8);
 
 -- --------------------------------------------------------
 
@@ -163,7 +178,7 @@ INSERT INTO `note` (`noteID`, `userID`, `noteText`, `noteTime`, `radius`, `nRest
 (1, 1, 'I found a great place! Recommend to everyone!', '2018-11-10 17:02:03', 100, 'all', 1, '60.1683968', '24.9520721', 'Helsingin Yliopisto', 'Yliopistonkatu 4, 00100 Helsinki, Finland', 1),
 (2, 1, 'Back to school, so frastrated', '2018-11-23 10:15:33', 100, 'all', 2, '60.1697871', '24.9487758', 'Pizzeria Via Tribunali', 'Sofiankatu 4, 00101 Helsinki, Finland', 0),
 (3, 2, 'Brought some cany for my son. Will release Simulation Theory Tour new location on December, stay tuned.', '2018-11-23 12:10:23', 100, 'friends', 3, '33.9431419', '-118.4080958', 'See\'s Candies', '400 World Way, Los Angeles, CA 90045', 1),
-(4, 2, 'This place are awesome! Great bar!', '2018-11-23 12:35:12', 100, 'friend', 4, '33.9415630', '-118.4070620', 'American Airlines Admirals Club', 'Terminal 4, Los Angeles International Airport, 1 World Way, Los Angeles, CA 90045', 1),
+(4, 2, 'This place are awesome! Great bar!', '2018-11-23 12:35:12', 100, 'friends', 4, '33.9415630', '-118.4070620', 'American Airlines Admirals Club', 'Terminal 4, Los Angeles International Airport, 1 World Way, Los Angeles, CA 90045', 1),
 (5, 3, 'Hate to say, but this place is way better! We\'re talking about real food here.', '2018-11-23 12:36:22', 100, 'all', 5, '33.9438829', '-118.4090564', 'Real Food Daily', '1 World Way, Los Angeles, CA 90045', 0),
 (6, 2, 'Miss the place. Gonna have fun in London.', '2018-11-24 10:17:54', 100, 'self', 6, '51.4695758', '-0.4496071', 'Plaza Premium Lounge', 'A3, Terminal 2, London Heathrow Airport, Longford, Hounslow TW6 1EW UK', 0);
 
@@ -184,7 +199,10 @@ CREATE TABLE `request` (
 --
 
 INSERT INTO `request` (`userID1`, `userID2`, `rStatus`) VALUES
-(7, 3, 0);
+(7, 3, 0),
+(108, 6, 0),
+(108, 7, 0),
+(110, 108, 0);
 
 -- --------------------------------------------------------
 
@@ -213,7 +231,9 @@ INSERT INTO `schedule` (`sID`, `startTime`, `endTime`, `startDate`, `Weekday`, `
 (4, '10:00:00', '18:00:00', '2018-11-25', 3, '2019-12-30', 'daily'),
 (5, '09:00:00', '13:00:00', '2018-11-25', 6, '2018-12-30', 'daily'),
 (6, '11:00:00', '16:00:00', '2018-11-24', 5, '2018-11-24', 'no'),
-(7, '10:00:00', '18:00:00', '2018-11-25', 6, '2019-11-30', 'daily');
+(7, '10:00:00', '18:00:00', '2018-11-25', 6, '2019-11-30', 'daily'),
+(16, '08:00:00', '09:00:00', '2018-12-08', 6, '2018-12-29', 'daily'),
+(17, '00:00:00', '00:00:00', '2018-12-05', 3, '2018-12-26', 'weekly');
 
 -- --------------------------------------------------------
 
@@ -238,7 +258,10 @@ INSERT INTO `state` (`userID`, `state`) VALUES
 (5, 'chilling'),
 (6, 'lunch break'),
 (7, 'default'),
-(8, 'default');
+(8, 'default'),
+(108, 'at home'),
+(109, 'default'),
+(110, 'default');
 
 -- --------------------------------------------------------
 
@@ -322,11 +345,9 @@ INSERT INTO `user` (`userID`, `email`, `userName`, `password`, `gender`, `birthD
 (6, 'chrismartin@coldplay.com', 'paradise', 'chrismartin1977', 'male', '1977-03-02', 'United Kingdom'),
 (7, 'thomyorke@radiohead.com', 'thomyorke', 'ihatedom', 'male', '1968-10-07', 'United Kingdom'),
 (8, 'petrilindroos@ensiferum.com', 'petriworrier', 'wintersunsucks', 'male', '1980-01-10', 'Finland'),
-(99, 'sym@gmail.com', 'sym', '123456', 'female', '2010-01-02', 'China'),
-(100, '123', '123', '12345', NULL, NULL, NULL),
-(101, '123', '123', 'asdfgh', 'female', '2000-01-01', 'Barbados'),
-(102, '1', '1', '1', 'female', '2000-01-01', 'Bangladesh'),
-(103, '1', 'sym', '123', 'female', '2000-01-01', 'Bangladesh');
+(108, 'test@gmail.com', 'test', '123', 'male', '1998-01-02', 'Azerbaijan'),
+(109, 'friend1@gmail.com', 'friend1', '123456', 'male', '1990-05-05', 'Australia'),
+(110, 'friend2@gmail.com', 'friend2', '111111', 'female', '1998-12-21', 'China');
 
 -- --------------------------------------------------------
 
@@ -335,7 +356,7 @@ INSERT INTO `user` (`userID`, `email`, `userName`, `password`, `gender`, `birthD
 --
 DROP TABLE IF EXISTS `tempfilter`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `tempfilter`  AS  (select `filter`.`userID` AS `filteruser`,`note`.`noteID` AS `noteID`,`note`.`userID` AS `noteuser` from (((`filter` join `note`) join `schedule` on((`filter`.`fsID` = `schedule`.`sID`))) join `current` on((`filter`.`userID` = `current`.`userID`))) where ((cast(`current`.`cTime` as date) between `schedule`.`startDate` and `schedule`.`endDate`) and (cast(`current`.`cTime` as time) between `schedule`.`startTime` and `schedule`.`endTime`) and (((`schedule`.`repetition` = 'no') and (cast(`current`.`cTime` as date) = `schedule`.`startDate`)) or (`schedule`.`repetition` = 'daily') or ((`schedule`.`repetition` = 'weekly') and (`current`.`cWeekday` = `schedule`.`Weekday`)) or ((`schedule`.`repetition` = 'monthly') and (dayofmonth(`current`.`cTime`) = dayofmonth(`schedule`.`startDate`))) or ((`schedule`.`repetition` = 'yearly') and (month(`current`.`cTime`) = month(`schedule`.`startDate`)))) and ((acos((((cos(radians(`filter`.`fLatitude`)) * cos(radians(`note`.`nLatitude`))) * cos((radians(`note`.`nLongitude`) - radians(`filter`.`fLongitude`)))) + (sin(radians(`filter`.`fLatitude`)) * sin(radians(`note`.`nLatitude`))))) * 3961) < `note`.`radius`) and ((`filter`.`fRestrict` = 'all') or ((`filter`.`fRestrict` = 'self') and (`filter`.`userID` = `note`.`userID`)) or ((`filter`.`fRestrict` = 'friend') and `filter`.`userID` in (select `friendship`.`userID2` from `friendship` where (`friendship`.`userID1` = `note`.`userID`)))))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `tempfilter`  AS  (select `filter`.`userID` AS `filteruser`,`note`.`noteID` AS `noteID`,`note`.`userID` AS `noteuser` from (((`filter` join `note`) join `schedule` on((`filter`.`fsID` = `schedule`.`sID`))) join `current` on((`filter`.`userID` = `current`.`userID`))) where ((cast(`current`.`cTime` as date) between `schedule`.`startDate` and `schedule`.`endDate`) and (cast(`current`.`cTime` as time) between `schedule`.`startTime` and `schedule`.`endTime`) and (((`schedule`.`repetition` = 'no') and (cast(`current`.`cTime` as date) = `schedule`.`startDate`)) or (`schedule`.`repetition` = 'daily') or ((`schedule`.`repetition` = 'weekly') and (`current`.`cWeekday` = `schedule`.`Weekday`)) or ((`schedule`.`repetition` = 'monthly') and (dayofmonth(`current`.`cTime`) = dayofmonth(`schedule`.`startDate`)))) and ((((6378.138 * 2) * asin(sqrt((pow(sin(((((`filter`.`fLatitude` * 3.14) / 180) - ((`note`.`nLatitude` * 3.14) / 180)) / 2)),2) + ((cos(((`filter`.`fLatitude` * 3.14) / 180)) * cos(((`note`.`nLatitude` * 3.14) / 180))) * pow(sin(((((`filter`.`fLongitude` * 3.14) / 180) - ((`note`.`nLongitude` * 3.14) / 180)) / 2)),2)))))) * 0.621) < `note`.`radius`) and ((`filter`.`fRestrict` = 'all') or ((`filter`.`fRestrict` = 'self') and (`filter`.`userID` = `note`.`userID`)) or ((`filter`.`fRestrict` = 'friends') and `filter`.`userID` in (select `friendship`.`userID2` from `friendship` where (`friendship`.`userID1` = `note`.`userID`)))) and (`filter`.`apply` = '1'))) ;
 
 -- --------------------------------------------------------
 
@@ -344,7 +365,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `tempnote`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `tempnote`  AS  (select `user`.`userID` AS `filteruser`,`note`.`noteID` AS `noteID`,`note`.`userID` AS `noteuser` from (((`user` join `note`) join `schedule` on((`note`.`nsID` = `schedule`.`sID`))) join `current` on((`user`.`userID` = `current`.`userID`))) where ((cast(`current`.`cTime` as date) between `schedule`.`startDate` and `schedule`.`endDate`) and (cast(`current`.`cTime` as time) between `schedule`.`startTime` and `schedule`.`endTime`) and (((`schedule`.`repetition` = 'no') and (cast(`current`.`cTime` as date) = `schedule`.`startDate`)) or (`schedule`.`repetition` = 'daily') or ((`schedule`.`repetition` = 'weekly') and (`current`.`cWeekday` = `schedule`.`Weekday`)) or ((`schedule`.`repetition` = 'monthly') and (dayofmonth(`current`.`cTime`) = dayofmonth(`schedule`.`startDate`))) or ((`schedule`.`repetition` = 'yearly') and (month(`current`.`cTime`) = month(`schedule`.`startDate`)))) and (acos((((cos(radians(`current`.`cLatitude`)) * cos(radians(`note`.`nLatitude`))) * cos((radians(`note`.`nLongitude`) - radians(`current`.`cLongitude`)))) + (sin(radians(`current`.`cLatitude`)) * sin(radians(`note`.`nLatitude`))))) < `note`.`radius`) and ((`note`.`nRestrict` = 'all') or ((`note`.`nRestrict` = 'self') and (`note`.`userID` = `user`.`userID`)) or ((`note`.`nRestrict` = 'friend') and `user`.`userID` in (select `friendship`.`userID2` from `friendship` where (`friendship`.`userID1` = `note`.`userID`)))))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `tempnote`  AS  (select `user`.`userID` AS `filteruser`,`note`.`noteID` AS `noteID`,`note`.`userID` AS `noteuser` from (((`user` join `note`) join `schedule` on((`note`.`nsID` = `schedule`.`sID`))) join `current` on((`user`.`userID` = `current`.`userID`))) where ((cast(`current`.`cTime` as date) between `schedule`.`startDate` and `schedule`.`endDate`) and (cast(`current`.`cTime` as time) between `schedule`.`startTime` and `schedule`.`endTime`) and (((`schedule`.`repetition` = 'no') and (cast(`current`.`cTime` as date) = `schedule`.`startDate`)) or (`schedule`.`repetition` = 'daily') or ((`schedule`.`repetition` = 'weekly') and (`current`.`cWeekday` = `schedule`.`Weekday`)) or ((`schedule`.`repetition` = 'monthly') and (dayofmonth(`current`.`cTime`) = dayofmonth(`schedule`.`startDate`)))) and ((((6378.138 * 2) * asin(sqrt((pow(sin(((((`current`.`cLatitude` * 3.14) / 180) - ((`note`.`nLatitude` * 3.14) / 180)) / 2)),2) + ((cos(((`current`.`cLatitude` * 3.14) / 180)) * cos(((`note`.`nLatitude` * 3.14) / 180))) * pow(sin(((((`current`.`cLongitude` * 3.14) / 180) - ((`note`.`nLongitude` * 3.14) / 180)) / 2)),2)))))) * 0.621) < `note`.`radius`) and ((`note`.`nRestrict` = 'all') or ((`note`.`nRestrict` = 'self') and (`note`.`userID` = `user`.`userID`)) or ((`note`.`nRestrict` = 'friends') and `user`.`userID` in (select `friendship`.`userID2` from `friendship` where (`friendship`.`userID1` = `note`.`userID`)))))) ;
 
 --
 -- 转储表的索引
@@ -426,13 +447,13 @@ ALTER TABLE `user`
 -- 使用表AUTO_INCREMENT `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `cID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- 使用表AUTO_INCREMENT `filter`
 --
 ALTER TABLE `filter`
-  MODIFY `filterID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `filterID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- 使用表AUTO_INCREMENT `note`
@@ -444,13 +465,13 @@ ALTER TABLE `note`
 -- 使用表AUTO_INCREMENT `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `sID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `sID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- 使用表AUTO_INCREMENT `user`
 --
 ALTER TABLE `user`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- 限制导出的表
