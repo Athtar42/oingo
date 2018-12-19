@@ -116,7 +116,7 @@ else{
 									<div class="form-group row">
     									<label for="staticTime" class="col-sm-4 col-form-label">Setted Time</label> 
     									<div class="col-sm-8">
-     										<input type="datetime-local" readonly class="form-control-plaintext" id="staticTime" value="<?php echo $current['cTime']; ?>">
+     										<input type="datetime-local" readonly class="form-control-plaintext" id="staticTime" value="<?php $t=strtotime($current['cTime']); echo date('Y-m-d\TH:i:s', $t); ?>">
     									</div>
   									</div>
 									<div class="form-group row">
