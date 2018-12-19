@@ -59,10 +59,10 @@ $sid=$schedule['sID'];
 //	   values ('$userid', '$tag', '$sid', '$restrict', '$apply', '$lat', '$lng')";
 //$result=mysqli_query($con, $sql);
 $sql = $con->prepare('insert into filter (userID, fTag, fsID, fRestrict, apply, fLatitude, fLongitude, fState) 
-   values (?, ?, ?, ?, ?, ?, ?)');
-$sql->bind_param('sssssss', $userid, $tag, $sid, $restrict, $apply, $lat, $lng, $state);
+   values (?, ?, ?, ?, ?, ?, ?, ?)');
+$sql->bind_param('ssssssss', $userid, $tag, $sid, $restrict, $apply, $lat, $lng, $state);
 $sql->execute();
 $result = $sql->get_result();
-echo "<script type='text/javascript'>alert('Successfully add a filter!');location='filter.php';</script>";
+echo "<script type='text/javascript'>alert('Successfully add a filter!');</script>";//location='filter.php';
 
 ?>
