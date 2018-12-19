@@ -17,5 +17,5 @@ $text=$_POST['text'];
 //add a comment
 $sql="insert into comment (userID, noteID, cText) values ('$userid', '$noteid', '$text')";
 $result=mysqli_query($con, $sql);
-
+echo"<script type='text/javascript'>alert('Successfully comment!');location='index.php';</script>";
 ?>
