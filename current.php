@@ -19,13 +19,13 @@ $userid=$_SESSION['userid'];
 $ctime=$_POST['currenttime'];
 $lat=$_POST['lat'];
 $lng=$_POST['lng'];
-$clocation=$_POST['currentlocation'];
+$clocation=$_POST['bLocation'];
 $weekday=getweekday($ctime);
 $sql="update current set cTime='$ctime', cWeekday='$weekday', cLongitude='$lng', cLatitude='$lat', cLocation='$clocation' where userID='$userid'";
 $result=mysqli_query($con, $sql);
 if($result)
 {
-	echo "<script type='text/javascript'>alert('Update the current condition.');location='current.php';</script>";
+	echo "<script type='text/javascript'>alert('Update the current condition.');location='test.php';</script>";
 }
 
 ?>
