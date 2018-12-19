@@ -25,7 +25,7 @@ $enddate=$_POST['enddate'];
 $repetition=$_POST['repetition'];
 $state=$_POST['state'];
 $apply=$_POST['apply'];
-if (isset($_POST["location"]))
+if ($_POST["location"])
 {
 	$location=$_POST['location'];
 	$gapi="AIzaSyCX-9YeQQrChMn1SiwTuMJ8hD2dLT-fIwE";
