@@ -136,6 +136,12 @@ $row=mysqli_num_rows($result);
 									</div>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
+											<span class="input-group-text" id="basic-addon">Location</span>
+										</div>
+										<input type="text" class="form-control" id="location" aria-describedby="basic-addon">
+									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
 											<label class="input-group-text" for="restrict">Resrtrict</label>
 										</div>
 										<select class="custom-select" id="restrict">
