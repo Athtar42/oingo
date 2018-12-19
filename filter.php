@@ -121,7 +121,7 @@ $row=mysqli_num_rows($result);
 										<div class="input-group-prepend">
 											<label class="input-group-text" for="repetition">Repitition</label>
 										</div>
-										<select class="custom-select" id="repetition">
+										<select class="custom-select" id="repetition" name="repetition">
 											<option selected value="no">No Repitition</option>
 											<option value="daily">Daily</option>
 											<option value="weekly">Weekly</option>
@@ -132,20 +132,20 @@ $row=mysqli_num_rows($result);
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon">Tag</span>
 										</div>
-										<input type="text" class="form-control" id="tag" aria-describedby="basic-addon">
+										<input type="text" class="form-control" id="tag" name="tag" aria-describedby="basic-addon">
 									</div>
 									
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon">Location</span>
 										</div>
-										<input type="text" class="form-control" id="location" aria-describedby="basic-addon">
+										<input type="text" class="form-control" id="location" name="location" aria-describedby="basic-addon">
 									</div>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<label class="input-group-text" for="restrict">Resrtrict</label>
 										</div>
-										<select class="custom-select" id="restrict">
+										<select class="custom-select" id="restrict" name="restrict">
 											<option selected value="all">Everyone</option>
 											<option value="friends">Only Friends</option>
 											<option value="self">Only Myself</option>

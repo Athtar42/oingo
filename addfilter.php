@@ -22,6 +22,8 @@ $endtime=$_POST['endtime'];
 $startdate=$_POST['startdate'];
 $enddate=$_POST['enddate'];
 $repetition=$_POST['repetition'];
+
+if (isset($_POST["location"])){
 $location=$_POST['location'];
 $gapi="AIzaSyCX-9YeQQrChMn1SiwTuMJ8hD2dLT-fIwE";
 $url = "https://maps.googleapis.com/maps/api/geocode/json?address=".urlencode($location)."&key=".urlencode($gapi);
@@ -29,6 +31,11 @@ $data = file_get_contents($url);
 $response = json_decode($data, true);
 $lat= $response['results'][0]['geometry']['location']['lat'];
 $lng= $response['results'][0]['geometry']['location']['lng'];
+}
+else{
+}
+
+
 $apply=$_POST['apply'];
 //add a filter schedule
 $weekday=getweekday($startdate);
