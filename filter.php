@@ -42,14 +42,14 @@ $row=mysqli_num_rows($result);
 		
 		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 
-			<a class="navbar-brand" href="index.html">OINGO</a>
+			<a class="navbar-brand" href="index.php">OINGO</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     				<span class="navbar-toggler-icon"></span>
   				</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a class="nav-link" href="index.html">OINGO</a>
+						<a class="nav-link" href="index.php">OINGO</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -57,8 +57,9 @@ $row=mysqli_num_rows($result);
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 							<a class="dropdown-item" href="friends.php">Friends List</a>
-							<a class="dropdown-item" href="#">Requests Sent</a>
-							<a class="dropdown-item" href="#">Requests Received</a>
+							<a class="dropdown-item" href="search.php">Search users</a>
+							<a class="dropdown-item" href="requestsent.php">Requests Sent</a>
+							<a class="dropdown-item" href="requestreceived.php">Requests Received</a>
 						</div>
 					</li>
 					<li class="nav-item active">
@@ -72,7 +73,7 @@ $row=mysqli_num_rows($result);
 						<a class="nav-link" href="setting.php">Settings</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Sign Out</a>
+						<a class="nav-link" href="logout.php">Sign Out</a>
 					</li>
 				</ul>
 			</div>
