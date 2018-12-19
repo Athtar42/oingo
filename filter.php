@@ -134,6 +134,7 @@ $row=mysqli_num_rows($result);
 										</div>
 										<input type="text" class="form-control" id="tag" aria-describedby="basic-addon">
 									</div>
+									
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon">Location</span>
