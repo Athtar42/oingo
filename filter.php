@@ -1,4 +1,19 @@
 <?php
+session_start();
+require_once("functions.php");
+$server="localhost";
+$db_username="root";
+$db_password="";
+$db_name="proj1"; 
+$con=mysqli_connect($server, $db_username, $db_password, $db_name);
+if(!$con)
+{
+	die("can't connect".mysqli_error());
+}
+$userid=$_SESSION['userid'];
+$sql="select * from filter where userID='$userid'";
+$result=mysqli_query($con, $sql);
+$row=mysqli_num_rows($result);
 
 ?>
 <!DOCTYPE html>
@@ -77,7 +92,7 @@
 							New Filter
 						</div>
 						<div class="card-body">
-								<form name="newfilter" action="" method="post">
+								<form name="newfilter" action="addfilter.php" method="post">
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<label class="input-group-text" for="startdate">Start Date</label>
@@ -104,9 +119,9 @@
 									</div>				
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
-											<label class="input-group-text" for="radius">Repitition</label>
+											<label class="input-group-text" for="repetition">Repitition</label>
 										</div>
-										<select class="custom-select" id="radius">
+										<select class="custom-select" id="repetition">
 											<option selected value="no">No Repitition</option>
 											<option value="daily">Daily</option>
 											<option value="weekly">Weekly</option>
@@ -148,73 +163,149 @@
 							
 						</div>	
 					</div>
+					
+					<?php
+					for($i=1;$i<=$row;$i++)
+					{
+						$filter=mysqli_fetch_array($result);
+						$sql1="select * from schedule where sID=".$filter['fsID'];
+						$result1=mysqli_query($con, $sql1);
+						$schedule=mysqli_fetch_array($result1);
+					?>
 					<div class="card mb-3">
 						<div class="card-header">
-							FilterID
+							<?php echo "Filter".$i; ?>
 						</div>						
 						<div class="card-body">
-								<form name="newfilter" action="" method="post">
+								<form name="changefilter" action="change.php" method="post">
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<label class="input-group-text" for="startdate">Start Date</label>
 										</div>
-										<input type="date" class="form-control" id="startdate" name="startdate" aria-describedby="basic-addon">
+										<input type="date" class="form-control" id="startdate" name="startdate" value="<?php echo $schedule['startDate']; ?>" aria-describedby="basic-addon">
 									</div>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<label class="input-group-text" for="enddate">End Date</label>
 										</div>
-										<input type="date" class="form-control" id="enddate" name="enddate" aria-describedby="basic-addon">
+										<input type="date" class="form-control" id="enddate" name="enddate" value="<?php echo $schedule['endDate']; ?>" aria-describedby="basic-addon">
 									</div>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<label class="input-group-text" for="starttime">Start Time</label>
 										</div>
-										<input type="time" class="form-control" id="starttime" name="starttime" aria-describedby="basic-addon">
+										<input type="time" class="form-control" id="starttime" name="starttime" value="<?php echo $schedule['startTime']; ?>" aria-describedby="basic-addon">
 									</div>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<label class="input-group-text" for="starttime">End Time</label>
 										</div>
-										<input type="time" class="form-control" id="endtime" name="endtime" aria-describedby="basic-addon">
+										<input type="time" class="form-control" id="endtime" name="endtime" value="<?php echo $schedule['endTime']; ?>" aria-describedby="basic-addon">
 									</div>				
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
-											<label class="input-group-text" for="radius">Repitition</label>
+											<label class="input-group-text" for="repetition">Repetition</label>
 										</div>
-										<select class="custom-select" id="radius">
-											<option selected value="no">No Repitition</option>
-											<option value="daily">Daily</option>
-											<option value="weekly">Weekly</option>
-											<option value="monthly">Monthly</option>
-										</select>
+										<?php
+										switch ($schedule['repetition'])
+										{
+											case "no":
+												echo '<select class="custom-select" id="repetiton">';
+													echo '<option selected value="no">No Repetition</option>';
+													echo '<option value="daily">Daily</option>';
+													echo '<option value="weekly">Weekly</option>';
+													echo '<option value="monthly">Monthly</option>';
+												echo '</select>';
+												break;
+											case "daily":
+												echo '<select class="custom-select" id="repetiton">';
+													echo '<option value="no">No Repetition</option>';
+													echo '<option selected value="daily">Daily</option>';
+													echo '<option value="weekly">Weekly</option>';
+													echo '<option value="monthly">Monthly</option>';
+												echo '</select>';
+												break;
+											case "weekly":
+												echo '<select class="custom-select" id="repetiton">';
+													echo '<option value="no">No Repetition</option>';
+													echo '<option value="daily">Daily</option>';
+													echo '<option selected value="weekly">Weekly</option>';
+													echo '<option value="monthly">Monthly</option>';
+												echo '</select>';
+												break;
+											case "monthly":
+												echo '<select class="custom-select" id="repetiton">';
+													echo '<option value="no">No Repetition</option>';
+													echo '<option value="daily">Daily</option>';
+													echo '<option value="weekly">Weekly</option>';
+													echo '<option selected value="monthly">Monthly</option>';
+												echo '</select>';
+												break;
+											
+										}
+										?>
 									</div>													
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon">Tag</span>
 										</div>
-										<input type="text" class="form-control" id="tag" aria-describedby="basic-addon">
+										<input type="text" class="form-control" id="tag" value="<?php echo '#'.$filter['fTag']; ?>" aria-describedby="basic-addon">
 									</div>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<label class="input-group-text" for="restrict">Resrtrict</label>
 										</div>
-										<select class="custom-select" id="restrict">
-											<option selected value="all">Everyone</option>
-											<option value="friends">Only Friends</option>
-											<option value="self">Only Myself</option>
-										</select>
+										<?php
+										switch ($filter['fRestrict'])
+										{
+											case "all":
+												echo '<select class="custom-select" id="restrict">';
+													echo '<option selected value="all">Everyone</option>';
+													echo '<option value="friends">Only Friends</option>';
+													echo '<option value="self">Only Myself</option>';
+												echo '</select>';
+												break;
+											case "friends":
+												echo '<select class="custom-select" id="restrict">';
+													echo '<option value="all">Everyone</option>';
+													echo '<option selected value="friends">Only Friends</option>';
+													echo '<option value="self">Only Myself</option>';
+												echo '</select>';
+												break;
+											case "self":
+												echo '<select class="custom-select" id="restrict">';
+													echo '<option value="all">Everyone</option>';
+													echo '<option value="friends">Only Friends</option>';
+													echo '<option selected value="self">Only Myself</option>';
+												echo '</select>';
+												break;
+										}
+										?>
 									</div>
 									<fieldset class="form-group">
 										<div class="row">
 											<legend class="col-form-label col-sm-5 pt-0">If apply?</legend>
 											<div class="col-sm-7">
-												<div class="form-check">
-													<input type="radio" name="apply" value="1" class="form-check-input"><label for="apply" class="form-check-label">Yes</label>
-												</div>
-												<div class="form-check">
-													<input type="radio" name="apply" value="0" class="form-check-input"><label for="apply" class="form-check-label">Not yet</label>
-												</div>
+												<?php
+												if($filter['apply']==1)
+												{
+													echo '<div class="form-check">';
+														echo '<input type="radio" name="apply" value="1" class="form-check-input" Checked><label for="apply" class="form-check-label">Yes</label>';
+													echo '</div>';
+													echo '<div class="form-check">';
+														echo '<input type="radio" name="apply" value="0" class="form-check-input"><label for="apply" class="form-check-label">Not yet</label>';
+													echo '</div>';
+												}
+												else
+												{
+													echo '<div class="form-check">';
+														echo '<input type="radio" name="apply" value="1" class="form-check-input"><label for="apply" class="form-check-label">Yes</label>';
+													echo '</div>';
+													echo '<div class="form-check">';
+														echo '<input type="radio" name="apply" value="0" class="form-check-input" Checked><label for="apply" class="form-check-label">Not yet</label>';
+													echo '</div>';
+												}
+												?>
 											</div>
 										</div>
 									</fieldset>
@@ -224,82 +315,9 @@
 						</div>			
 		
 					</div>
-					<div class="card mb-3">
-						<div class="card-header">
-							FilterID
-						</div>						
-						<div class="card-body">
-								<form name="newfilter" action="" method="post">
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<label class="input-group-text" for="startdate">Start Date</label>
-										</div>
-										<input type="date" class="form-control" id="startdate" name="startdate" aria-describedby="basic-addon">
-									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<label class="input-group-text" for="enddate">End Date</label>
-										</div>
-										<input type="date" class="form-control" id="enddate" name="enddate" aria-describedby="basic-addon">
-									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<label class="input-group-text" for="starttime">Start Time</label>
-										</div>
-										<input type="time" class="form-control" id="starttime" name="starttime" aria-describedby="basic-addon">
-									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<label class="input-group-text" for="starttime">End Time</label>
-										</div>
-										<input type="time" class="form-control" id="endtime" name="endtime" aria-describedby="basic-addon">
-									</div>				
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<label class="input-group-text" for="radius">Repitition</label>
-										</div>
-										<select class="custom-select" id="radius">
-											<option selected value="no">No Repitition</option>
-											<option value="daily">Daily</option>
-											<option value="weekly">Weekly</option>
-											<option value="monthly">Monthly</option>
-										</select>
-									</div>													
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text" id="basic-addon">Tag</span>
-										</div>
-										<input type="text" class="form-control" id="tag" aria-describedby="basic-addon">
-									</div>
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<label class="input-group-text" for="restrict">Resrtrict</label>
-										</div>
-										<select class="custom-select" id="restrict">
-											<option selected value="all">Everyone</option>
-											<option value="friends">Only Friends</option>
-											<option value="self">Only Myself</option>
-										</select>
-									</div>
-									<fieldset class="form-group">
-										<div class="row">
-											<legend class="col-form-label col-sm-5 pt-0">If apply?</legend>
-											<div class="col-sm-7">
-												<div class="form-check">
-													<input type="radio" name="apply" value="1" class="form-check-input"><label for="apply" class="form-check-label">Yes</label>
-												</div>
-												<div class="form-check">
-													<input type="radio" name="apply" value="0" class="form-check-input"><label for="apply" class="form-check-label">Not yet</label>
-												</div>
-											</div>
-										</div>
-									</fieldset>
-									<button type="submit" name="submit" value="submit" class="btn btn-primary mb-2">Change</button>
-								</form>
-							
-						</div>			
-		
-					</div>
+					<?php
+					}
+					?>
 			</div>
 		</div>
 		<script src="js/jquery-3.3.1.js"></script>
