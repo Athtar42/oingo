@@ -15,10 +15,12 @@ if(!$con)
 $userid=$_SESSION['userid'];
 $userid2=$_GET['friendid'];
 $sql1="insert into friendship values ('$userid', '$userid2')";
-$sql2="insert into friendship values ('$userid2', '$userid')";
 $result1=mysqli_query($con, $sql1);
+$sql2="insert into friendship values ('$userid2', '$userid')";
 $result2=mysqli_query($con, $sql2);
-if($result1&&$result2)
+$sql3="delete from request where userID1='$userid2' and userID2='$userid'";
+$result3=mysqli_query($con, $sql3);
+if($result1&&$result2&&$result3)
 {
 	echo"<script type='text/javascript'>alert('Successfully!');location='requestreceived.php';</script>";
 }

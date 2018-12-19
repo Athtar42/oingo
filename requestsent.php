@@ -98,7 +98,7 @@ $row=mysqli_num_rows($result);
 								echo "<p class='card-text'>".$sent['birthdate']."</p>";
 								echo "<p class='card-text'>".$sent['region']."</p>";
 								echo "<p class='card-text'>".$sent['state']."</p>";
-								echo "<a href='accept.php?friendid=".$sent['userID2']."class='btn btn-primary'>Accept</a>";
+								echo "<a href='cancel.php?friendid=".$sent['userID2']."class='btn btn-primary'>Cancel</a>";
 							echo "</div>";
 						echo "</div>";
 			echo "</div>";

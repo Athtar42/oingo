@@ -15,7 +15,7 @@ if(!$con)
 $userid=$_SESSION['userid'];
 $userid2=$_GET['friendid'];
 $sql="delete from request where userID1='$userid' and userID2='$userid2'";
-$result=mysqli_query($con, $sql1);
+$result=mysqli_query($con, $sql);
 if($result)
 {
 	echo"<script type='text/javascript'>alert('Successfully!');location='requestsent.php';</script>";
@@ -23,6 +23,7 @@ if($result)
 else
 {
 	echo"<script type='text/javascript'>alert('Please try again.');location='requestsent.php';</script>";
+	
 }
 
 ?>
