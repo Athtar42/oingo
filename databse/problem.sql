@@ -28,7 +28,8 @@ WHERE  (date(current.cTime) BETWEEN schedule.startDate AND schedule.endDate) AND
 				#AND (ACOS( COS(RADIANS(filter.fLatitude)) * COS(RADIANS(note.nLatitude)) * COS(RADIANS(note.nLongitude) - RADIANS(filter.fLongitude)) + SIN(RADIANS(filter.fLatitude)) * SIN(RADIANS(note.nLatitude)) )*3961)< note.radius
 				AND (filter.fRestrict="all" OR (filter.fRestrict="self" AND filter.userID=note.userID) OR (filter.fRestrict="friends" AND filter.userID in (SELECT userID2 FROM friendship WHERE userID1=note.userID)))
 				AND (filter.apply="1") 
-				AND (filter.fState = NULL OR filter.fState = state.state)
+				AND (filter.fState = "default" OR filter.fState = state.state)
+
 )
 
 WITH afterfilter AS 
