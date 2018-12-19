@@ -124,19 +124,19 @@ else
 										<div class="input-group-prepend">
 											<span class="input-group-text">Text</span>
 										</div>
-										<textarea class="form-control" aria-label="With textarea" id="notetext"></textarea>
+										<textarea class="form-control" name="text" aria-label="With textarea" id="notetext"></textarea>
 									</div>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon">Tags (use space seperate)</span>
 										</div>
-										<input type="text" class="form-control" id="tag" aria-describedby="basic-addon3">
+										<input type="text" class="form-control" name="tag" id="tag" aria-describedby="basic-addon3">
 									</div>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<label class="input-group-text" for="restrict">Who can see this note</label>
 										</div>
-										<select class="custom-select" id="restrict">
+										<select name="restrict" class="custom-select" id="restrict">
 											<option selected value="all">Everyone</option>
 											<option value="friends">Only Friends</option>
 											<option value="self">Only Myself</option>
@@ -146,7 +146,7 @@ else
 										<div class="input-group-prepend">
 											<label class="input-group-text" for="radius">Viewable Radius</label>
 										</div>
-										<select class="custom-select" id="radius">
+										<select name="radius" class="custom-select" id="radius">
 											<option selected value="100">100</option>
 											<option value="500">500</option>
 											<option value="800">800</option>
@@ -155,9 +155,9 @@ else
 									</div>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
-											<label class="input-group-text" for="ifcomment">If allow commentï¼/label>
+											<label class="input-group-text" for="ifcomment">If allow comment?</label>
 										</div>
-										<select class="custom-select" id="ifcomment">
+										<select name="ifcomment" class="custom-select" id="ifcomment">
 											<option selected value="1">Allowed</option>
 											<option value="0">Not Allow</option>
 										</select>
@@ -190,7 +190,7 @@ else
 										<div class="input-group-prepend">
 											<label class="input-group-text" for="repetition">Repetition</label>
 										</div>
-										<select class="custom-select" id="repetiton">
+										<select name="repetition" class="custom-select" id="repetiton">
 											<option selected value="no">No Repitition</option>
 											<option value="daily">Daily</option>
 											<option value="weekly">Weekly</option>
@@ -230,7 +230,7 @@ else
 									echo "<a href='#' class='card-link'>".$tag['tag']."</a>";
 								}
 							echo "</div>";
-							$sql3="select * from comment where noteID=".$note['noteID'];
+							$sql3="select * from comment where noteID=".$note['noteID'];//传送值
 						    $result3=mysqli_query($con, $sql3);
 							$commentrow=mysqli_num_rows($result3);
 							echo "<div>";
