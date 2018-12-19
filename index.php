@@ -68,6 +68,7 @@ else
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 							<a class="dropdown-item" href="friends.php">Friends List</a>
+							<a class="dropdown-item" href="search.php">Search users</a>
 							<a class="dropdown-item" href="requestsent.php">Request Sent</a>
 							<a class="dropdown-item" href="requestreceved.php">Request Received</a>
 						</div>
