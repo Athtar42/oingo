@@ -42,7 +42,7 @@ if(!$con)
 	//			values ('$starttime', '$endtime', '$weekday', '$startdate', '$enddate', '$repetition')";
 	//$result3=mysqli_query($con, $sql3);
 	$sql3 = $con->prepare('insert into schedule (startTime, endTime, Weekday, startDate, endDate, repetition) 
-				values ('$starttime', '$endtime', '$weekday', '$startdate', '$enddate', '$repetition')');
+				values (?, ?, ?, ?, ?, ?)');
 	$sql3->bind_param('ssssss', $starttime, $endtime, $weekday, $startdate, $enddate, $repetition);
 	$sql3->execute();
 	$result3 = $sql3->get_result();
@@ -62,16 +62,16 @@ if(!$con)
 	$sql1->execute();
 	$result1 = $sql1->get_result();
 	
-	$sql2="select noteID from note where userID='".$userid"' and noteTime='".$time."'";
+	$sql2="select max(noteID) as noteid from note where userID='".$userid."'";
 	$result2=mysqli_query($con, $sql2);
 	$note=mysqli_fetch_array($result2);
-	$noteid=$note['noteID'];
+	$noteid=$note['noteid'];
 	//add tag
 	$tags=dividetag($tag);
 	$num=count($tags);
-	for($i=0;$i<$num;$i++)
+	for($i=1;$i<$num;$i++)
 	{
-		$sql="insert into tag values ('$noteid', '".$tags[$i]."')";
+		$sql="insert into tag values ('$noteid', '#".$tags[$i]."')";
 		$result=mysqli_query($con, $sql);
 	}
 	
