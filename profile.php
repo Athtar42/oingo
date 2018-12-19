@@ -18,12 +18,11 @@ $state=$_POST['state'];
 $gender=$_POST['gender'];
 $birthdate=$_POST['birthdate'];
 $region=$_POST['region'];
+$password=$_POST['password'];
+$confirm=$_POST['confirm'];
 
-if(isset($_POST["password"])))
+if($password!="")
 {
-	$password=$_POST['password'];
-	$confirm=$_POST['confirm'];
-
 	if($password==$confirm) 
 	{
 		//update state
