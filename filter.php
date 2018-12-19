@@ -92,7 +92,7 @@ $row=mysqli_num_rows($result);
 							New Filter
 						</div>
 						<div class="card-body">
-								<form name="newfilter" action="updatefilter.php" method="post">
+								<form name="newfilter" action="addfilter.php" method="post">
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<label class="input-group-text" for="startdate">Start Date</label>
