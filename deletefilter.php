@@ -10,5 +10,16 @@ if(!$con)
 	die("can't connect".mysqli_error());
 }
 $userid=$_SESSION['userid'];
+$filterID=$_GET['filterID']
+$sql="delete from filter where filterID='".$filterID."'";
+$result=mysqli_query($con, $sql);
+if($result)
+{
+	echo"<script type='text/javascript'>alert('Filter deleted!');location='filter.php';</script>";
+}
+else
+{
+	echo"<script type='text/javascript'>alert('Please try again.');location='filter.php';</script>";
+}
 
 ?>
