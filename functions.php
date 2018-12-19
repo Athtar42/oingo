@@ -113,12 +113,16 @@ function dividetag($tag)
 
 function getweekday($date)
 {
-	$weekday=date("w", $date);
-	if($weekday==0)
-	{
-		$weekday=7;
-	}
 	
-	return $weekday;
+		$date_str=date('Y-m-d',strtotime($date));
+    $arr=explode("-", $date_str);
+    $year=$arr[0];
+    $month=sprintf('%02d',$arr[1]);
+    $day=sprintf('%02d',$arr[2]);
+    $hour = $minute = $second = 0;
+    $strap = mktime($hour,$minute,$second,$month,$day,$year);
+    $number_wk=date("w",$strap);
+    $weekArr=array(7,1, 2, 3, 4, 5, 6);
+    return $weekArr[$number_wk];
 }
 ?>
