@@ -13,7 +13,7 @@ if(!$con)
 	die("can't connect".mysqli_error());
 }
 
-if ((isset($_POST["userid"]))&&(isset($_POST["tag"]))&&(isset($_POST["starttime"]))&&(isset($_POST["endtime"]))&&(isset($_POST["startdate"]))&&(isset($_POST["enddate"]))&&(isset($_POST["repetition"]))&&(isset($_POST["Location"]))&&(isset($_POST["apply"]))){
+//if ((isset($_POST["userid"]))&&(isset($_POST["tag"]))&&(isset($_POST["starttime"]))&&(isset($_POST["endtime"]))&&(isset($_POST["startdate"]))&&(isset($_POST["enddate"]))&&(isset($_POST["repetition"]))&&(isset($_POST["Location"]))&&(isset($_POST["apply"]))){
 $userid=$_SESSION['userid'];
 $restirct=$_POST['restirct'];
 $tag=$_POST['tag'];
@@ -53,7 +53,8 @@ $sql = $con->prepare('insert into filter (userID, fTag, fsID, fRestrict, apply, 
 $sql->bind_param('sssss', $userid, $tag, $sid, $restirct, $apply, $lat, $lng);
 $sql->execute();
 $result = $sql->get_result();
-else{
-	echo "<script type='text/javascript'>alert('Please fill in the empty part.')</script>";
-}
+//}
+//else{
+//	echo "<script type='text/javascript'>alert('Please fill in the empty part.')</script>";
+//}
 ?>
