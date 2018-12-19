@@ -143,6 +143,16 @@ else{
 								<div class="form-group row">
 									<label for="currenttime" class="col-sm-4 col-form-label">Setting Time</label> 
 									<div class="col-sm-8"><input type="datetime-local" name="currenttime" class="form-control"></div>
+								</div>
+								<div class="form-group row">
+									<label for="currenttime" class="col-sm-4 col-form-label">Location</label> 
+									<div class="col-sm-8"><input readonly type="bLocation" name="bLocation" class="form-control"
+										<?php 
+											if (isset($location)){
+											echo "value='".$location."'";
+											};
+										?>																				
+										></div>
 								</div>								
 								<div class="form-group row">
 									<label for="lat" class="col-sm-4 col-form-label">Latitude</label> 

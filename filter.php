@@ -295,6 +295,12 @@ $row=mysqli_num_rows($result);
 										}
 										?>
 									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text" id="basic-addon">State</span>
+										</div>
+										<input type="text" class="form-control" id="State" name="State" aria-describedby="basic-addon" value="<?php echo $filter['fState']?>">
+									</div>
 									<fieldset class="form-group">
 										<div class="row">
 											<legend class="col-form-label col-sm-5 pt-0">If apply?</legend>
