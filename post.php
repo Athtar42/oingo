@@ -29,7 +29,7 @@ if(!$con)
 	$repetition=$_POST['repetition'];
 	
 	
-	$sql="select * from current where userID=userid";
+	$sql="select * from current where userID='$userid'";
 	$result=mysqli_query($con, $sql);
 	$current=mysqli_fetch_array($result);
 	$time=$current['cTime'];
@@ -38,18 +38,31 @@ if(!$con)
 	$location=$current['cLocation'];
 	//add schedule
 	$weekday=getweekday($startdate);
-	$sql3="insert into schedule (startTime, endTime, Weekday, startDate, endDate, repetition) 
-				values ('$starttime', '$endtime', '$weekday', '$startdate', '$enddate', '$repetition')";
-	$result3=mysqli_query($con, $sql3);
+	//$sql3="insert into schedule (startTime, endTime, Weekday, startDate, endDate, repetition) 
+	//			values ('$starttime', '$endtime', '$weekday', '$startdate', '$enddate', '$repetition')";
+	//$result3=mysqli_query($con, $sql3);
+	$sql3 = $con->prepare('insert into schedule (startTime, endTime, Weekday, startDate, endDate, repetition) 
+				values ('$starttime', '$endtime', '$weekday', '$startdate', '$enddate', '$repetition')');
+	$sql3->bind_param('ssssss', $starttime, $endtime, $weekday, $startdate, $enddate, $repetition);
+	$sql3->execute();
+	$result3 = $sql3->get_result();
+	
 	$sql4="select max(sID) as sID from schedule";
 	$result4=mysqli_query($con, $sql4);
+	
 	$schedule=mysqli_fetch_array($result4);
 	$sid=$schedule['sID'];
 	//add note
-	$sql1="insert into note (userID, noteText, noteTime, radius, nRestrict, nsID, nLatitude, nLongitude, nAddress, ifComment) 
-				values ('$userid', '$text', '$time', '$radius', '$restrict', '$sid', '$lat', '$lng',' $location', '$ifcomment')";
-	$result1=mysqli_query($con, $sql1);
-	$sql2="select noteID from note where userID='$userid' and noteTime='$time'";
+	//$sql1="insert into note (userID, noteText, noteTime, radius, nRestrict, nsID, nLatitude, nLongitude, nAddress, ifComment) 
+	//			values ('$userid', '$text', '$time', '$radius', '$restrict', '$sid', '$lat', '$lng',' $location', '$ifcomment')";
+	//$result1=mysqli_query($con, $sql1);
+	$sql1 = $con->prepare('insert into note (userID, noteText, noteTime, radius, nRestrict, nsID, nLatitude, nLongitude, nAddress, ifComment) 
+				values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+	$sql1->bind_param('ssssssssss', $userid, $text, $time, $radius, $restrict, $sid, $lat, $lng, $location, $ifcomment);
+	$sql1->execute();
+	$result1 = $sql1->get_result();
+	
+	$sql2="select noteID from note where userID='".$userid"' and noteTime='".$time."'";
 	$result2=mysqli_query($con, $sql2);
 	$note=mysqli_fetch_array($result2);
 	$noteid=$note['noteID'];
