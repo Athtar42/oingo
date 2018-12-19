@@ -190,7 +190,7 @@ $row=mysqli_num_rows($result);
 							<?php echo "Filter".$i; ?>
 						</div>						
 						<div class="card-body">
-								<form name="changefilter" action="alterfilter.php" method="post">
+								<form name="changefilter" action="updatefilter.php" method="post">
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<label class="input-group-text" for="filterID">Filter ID</label>
