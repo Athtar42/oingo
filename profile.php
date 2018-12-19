@@ -19,7 +19,7 @@ $gender=$_POST['gender'];
 $birthdate=$_POST['birthdate'];
 $region=$_POST['region'];
 
-if((isset($_POST["password"]))&&(isset($_POST["confirm"])))
+if(isset($_POST["password"])))
 {
 	$password=$_POST['password'];
 	$confirm=$_POST['confirm'];
