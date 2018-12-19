@@ -26,7 +26,8 @@ WHERE  (date(current.cTime) BETWEEN schedule.startDate AND schedule.endDate) AND
                 AND 6378.138 * 2 * ASIN(SQRT(POW(SIN((filter.fLatitude*3.14/180-note.nLatitude*3.14/180)/2),2)+COS(filter.fLatitude*3.14/180)*COS(note.nLatitude*3.14/180)*POW(SIN((filter.fLongitude*3.14/180-note.nLongitude*3.14/180)/2),2)))*0.621 < note.radius
 				#AND (ACOS( COS(RADIANS(filter.fLatitude)) * COS(RADIANS(note.nLatitude)) * COS(RADIANS(note.nLongitude) - RADIANS(filter.fLongitude)) + SIN(RADIANS(filter.fLatitude)) * SIN(RADIANS(note.nLatitude)) )*3961)< note.radius
 				AND (filter.fRestrict="all" OR (filter.fRestrict="self" AND filter.userID=note.userID) OR (filter.fRestrict="friends" AND filter.userID in (SELECT userID2 FROM friendship WHERE userID1=note.userID)))
-				AND (filter.apply="1")
+				AND (filter.apply="1") 
+				AND (filter.state = NULL OR filter.state = user.state)
 )
 
 WITH afterfilter AS 
