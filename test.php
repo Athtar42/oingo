@@ -1,4 +1,21 @@
+<?php
+session_start();
+require_once("functions.php");
+$server="localhost";
+$db_username="root";
+$db_password="";
+$db_name="proj1"; 
+$con=mysqli_connect($server, $db_username, $db_password, $db_name);
+if(!$con)
+{
+	die("can't connect".mysqli_error());
+}
+$userid=$_SESSION['userid'];
+$sql="select * from current where userID='$userid'";
+$result=mysqli_query($con, $sql);
+$current=mysqli_fetch_array($result);
 
+?>
 <!DOCTYPE html>
 <html>
 
@@ -99,13 +116,13 @@ else{
 									<div class="form-group row">
     									<label for="staticTime" class="col-sm-4 col-form-label">Setted Time</label> 
     									<div class="col-sm-8">
-     										<input type="datetime-local" readonly class="form-control-plaintext" id="staticTime" value="">
+     										<input type="datetime-local" readonly class="form-control-plaintext" id="staticTime" value="<?php echo $current['cTime']; ?>">
     									</div>
   									</div>
 									<div class="form-group row">
     									<label for="staticLocation" class="col-sm-4 col-form-label">Current location</label>
     									<div class="col-sm-8">
-    										<input type="text" readonly class="form-control" id="staticLocation" value="">
+    										<input type="text" readonly class="form-control" id="staticLocation" value="<?php echo $current['cLocation']; ?>">
     									</div>
 									</div>
 								</form>
@@ -122,7 +139,7 @@ else{
 								</div>
 								<button type="submit" name="submit" class="btn btn-primary">Search</button>
 							</form>
-							<form name="test" action=".php" method="post" class="">
+							<form name="test" action="current.php" method="post" class="">
 								<div class="form-group row">
 									<label for="currenttime" class="col-sm-4 col-form-label">Setting Time</label> 
 									<div class="col-sm-8"><input type="datetime-local" name="currenttime" class="form-control"></div>
