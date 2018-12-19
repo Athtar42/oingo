@@ -23,6 +23,7 @@ $endtime=$_POST['endtime'];
 $startdate=$_POST['startdate'];
 $enddate=$_POST['enddate'];
 $repetition=$_POST['repetition'];
+$state=$_POST['state'];
 $apply=$_POST['apply'];
 if (isset($_POST["location"]))
 {
@@ -57,9 +58,9 @@ $sid=$schedule['sID'];
 //$sql="insert into filter (userID, fTag, fsID, fRestrict, apply, fLatitude, fLongitude) 
 //	   values ('$userid', '$tag', '$sid', '$restrict', '$apply', '$lat', '$lng')";
 //$result=mysqli_query($con, $sql);
-$sql = $con->prepare('insert into filter (userID, fTag, fsID, fRestrict, apply, fLatitude, fLongitude) 
+$sql = $con->prepare('insert into filter (userID, fTag, fsID, fRestrict, apply, fLatitude, fLongitude, fState) 
    values (?, ?, ?, ?, ?, ?, ?)');
-$sql->bind_param('sssssss', $userid, $tag, $sid, $restrict, $apply, $lat, $lng);
+$sql->bind_param('sssssss', $userid, $tag, $sid, $restrict, $apply, $lat, $lng, $state);
 $sql->execute();
 $result = $sql->get_result();
 echo "<script type='text/javascript'>alert('Successfully add a filter!');location='filter.php';</script>";
