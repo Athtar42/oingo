@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： 127.0.0.1
--- 生成日期： 2018-12-19 17:52:05
+-- 生成日期： 2018-12-19 22:09:11
 -- 服务器版本： 10.1.37-MariaDB
 -- PHP 版本： 7.2.12
 
@@ -41,7 +41,8 @@ CREATE TABLE `comment` (
 
 INSERT INTO `comment` (`cID`, `userID`, `noteID`, `cText`) VALUES
 (1, 2, 5, 'Nah, you suck!! '),
-(2, 3, 5, 'I am not. This place offers real food, man!');
+(2, 3, 5, 'I am not. This place offers real food, man!'),
+(5, 110, 1, 'wwww');
 
 -- --------------------------------------------------------
 
@@ -55,7 +56,7 @@ CREATE TABLE `current` (
   `cWeekday` int(11) NOT NULL,
   `cLongitude` decimal(10,7) NOT NULL,
   `cLatitude` decimal(10,7) NOT NULL,
-  `cLocation` varchar(45) NOT NULL
+  `cLocation` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -67,9 +68,9 @@ INSERT INTO `current` (`userID`, `cTime`, `cWeekday`, `cLongitude`, `cLatitude`,
 (2, '2018-11-29 12:53:35', 3, '-118.4070620', '33.9415630', ''),
 (3, '2018-11-29 12:53:35', 3, '-118.4070620', '33.9415630', ''),
 (4, '2018-11-29 12:53:35', 3, '-118.4070620', '33.9415630', ''),
-(108, '2000-01-01 00:00:00', 6, '0.0000000', '0.0000000', 'default'),
+(108, '2018-12-19 10:00:00', 3, '-73.9938442', '40.7295255', '721 Broadway, New York, NY 10003'),
 (109, '2000-01-01 00:00:00', 6, '0.0000000', '0.0000000', 'default'),
-(110, '2000-01-01 00:00:00', 6, '0.0000000', '0.0000000', 'default');
+(110, '2018-12-19 12:12:00', 3, '-73.9938442', '40.7295255', '721 Broadway, New York, NY 10003');
 
 -- --------------------------------------------------------
 
@@ -94,9 +95,13 @@ CREATE TABLE `filter` (
 --
 
 INSERT INTO `filter` (`filterID`, `userID`, `fState`, `fTag`, `fsID`, `fLatitude`, `fLongitude`, `fRestrict`, `apply`) VALUES
-(1, 2, 'default', 'food', 7, '33.9415630', '-118.4070620', 'all', 0),
-(14, 108, NULL, '', 16, NULL, NULL, 'friends', 1),
-(15, 108, NULL, '', 17, NULL, NULL, 'all', 0);
+(1, 2, 'default', 'food', 7, '33.9415630', '-118.4070620', 'all', 1),
+(15, 108, 'default', 'test', 42, NULL, NULL, 'all', 0),
+(17, 110, NULL, '', 23, NULL, NULL, 'all', 1),
+(18, 110, NULL, '', 25, NULL, NULL, 'all', 1),
+(19, 110, NULL, '', 26, NULL, NULL, 'friends', 1),
+(20, 108, NULL, 'test', 34, NULL, NULL, 'all', 0),
+(21, 108, '', '', 43, NULL, NULL, 'all', 0);
 
 -- --------------------------------------------------------
 
@@ -180,7 +185,12 @@ INSERT INTO `note` (`noteID`, `userID`, `noteText`, `noteTime`, `radius`, `nRest
 (3, 2, 'Brought some cany for my son. Will release Simulation Theory Tour new location on December, stay tuned.', '2018-11-23 12:10:23', 100, 'friends', 3, '33.9431419', '-118.4080958', 'See\'s Candies', '400 World Way, Los Angeles, CA 90045', 1),
 (4, 2, 'This place are awesome! Great bar!', '2018-11-23 12:35:12', 100, 'friends', 4, '33.9415630', '-118.4070620', 'American Airlines Admirals Club', 'Terminal 4, Los Angeles International Airport, 1 World Way, Los Angeles, CA 90045', 1),
 (5, 3, 'Hate to say, but this place is way better! We\'re talking about real food here.', '2018-11-23 12:36:22', 100, 'all', 5, '33.9438829', '-118.4090564', 'Real Food Daily', '1 World Way, Los Angeles, CA 90045', 0),
-(6, 2, 'Miss the place. Gonna have fun in London.', '2018-11-24 10:17:54', 100, 'self', 6, '51.4695758', '-0.4496071', 'Plaza Premium Lounge', 'A3, Terminal 2, London Heathrow Airport, Longford, Hounslow TW6 1EW UK', 0);
+(6, 2, 'Miss the place. Gonna have fun in London.', '2018-11-24 10:17:54', 100, 'self', 6, '51.4695758', '-0.4496071', 'Plaza Premium Lounge', 'A3, Terminal 2, London Heathrow Airport, Longford, Hounslow TW6 1EW UK', 0),
+(7, 110, '123', '2018-12-19 12:12:00', 100, 'all', 27, '40.7295255', '-73.9938442', '', '721 Broadway, New York, NY 10003', 1),
+(8, 110, 'I\'m at Tisch School. Looks great!!!', '2018-12-19 12:12:00', 100, 'all', 28, '40.7295255', '-73.9938442', '', '721 Broadway, New York, NY 10003', 1),
+(9, 110, 'just test', '2018-12-19 12:12:00', 100, 'all', 29, '40.7295255', '-73.9938442', '', '721 Broadway, New York, NY 10003', 1),
+(10, 108, 'for friends to see', '2000-01-01 00:00:00', 100, 'friends', 30, '0.0000000', '0.0000000', '', 'default', 1),
+(11, 108, 'no comment', '2000-01-01 00:00:00', 100, 'all', 31, '0.0000000', '0.0000000', '', 'default', 0);
 
 -- --------------------------------------------------------
 
@@ -233,7 +243,33 @@ INSERT INTO `schedule` (`sID`, `startTime`, `endTime`, `startDate`, `Weekday`, `
 (6, '11:00:00', '16:00:00', '2018-11-24', 5, '2018-11-24', 'no'),
 (7, '10:00:00', '18:00:00', '2018-11-25', 6, '2019-11-30', 'daily'),
 (16, '08:00:00', '09:00:00', '2018-12-08', 6, '2018-12-29', 'daily'),
-(17, '00:00:00', '00:00:00', '2018-12-05', 3, '2018-12-26', 'weekly');
+(17, '00:00:00', '00:00:00', '2018-12-05', 3, '2018-12-26', 'weekly'),
+(18, '10:00:00', '20:00:00', '2018-12-19', 3, '2018-12-26', 'daily'),
+(19, '10:00:00', '13:00:00', '2018-12-19', 3, '2018-12-26', 'daily'),
+(20, '10:00:00', '13:00:00', '2018-12-19', 3, '2018-12-26', 'monthly'),
+(21, '10:00:00', '13:00:00', '2018-12-19', 3, '2018-12-26', 'monthly'),
+(22, '10:00:00', '13:00:00', '2018-12-19', 3, '2018-12-26', 'daily'),
+(23, '09:00:00', '11:00:00', '2018-12-05', 3, '2018-12-12', 'daily'),
+(24, '00:00:00', '09:00:00', '2018-12-12', 3, '2018-12-27', 'weekly'),
+(25, '00:00:00', '09:00:00', '2018-12-12', 3, '2018-12-27', 'weekly'),
+(26, '00:00:00', '09:00:00', '2018-12-05', 3, '2018-12-25', 'no'),
+(27, '10:00:00', '17:00:00', '2018-12-29', 6, '2018-12-30', 'daily'),
+(28, '00:00:00', '12:00:00', '2018-12-07', 5, '2018-12-07', 'daily'),
+(29, '00:00:00', '17:00:00', '2018-12-05', 3, '2018-12-26', 'daily'),
+(30, '00:00:00', '23:00:00', '2018-12-19', 3, '2018-12-19', 'no'),
+(31, '00:00:00', '23:00:00', '2018-12-19', 3, '2018-12-19', 'no'),
+(32, '08:00:00', '09:00:00', '2018-12-08', 6, '2018-12-29', 'daily'),
+(33, '08:00:00', '09:00:00', '2018-12-08', 6, '2018-12-29', 'daily'),
+(34, '00:00:00', '09:00:00', '2018-12-19', 3, '2018-12-26', 'daily'),
+(35, '08:00:00', '09:00:00', '2018-12-08', 6, '2018-12-29', 'daily'),
+(36, '08:00:00', '09:00:00', '2018-12-08', 6, '2018-12-29', 'daily'),
+(37, '00:00:00', '00:00:00', '2018-12-05', 3, '2018-12-26', 'daily'),
+(38, '00:00:00', '00:00:00', '2018-12-05', 3, '2018-12-26', 'daily'),
+(39, '00:00:00', '23:00:00', '2018-12-05', 3, '2018-12-26', 'daily'),
+(40, '00:00:00', '23:00:00', '2018-12-05', 3, '2018-12-26', 'daily'),
+(41, '00:00:00', '23:00:00', '2018-12-18', 2, '2018-12-20', 'daily'),
+(42, '00:00:00', '23:00:00', '2018-12-05', 3, '2018-12-26', 'daily'),
+(43, '00:00:00', '23:00:00', '2018-12-18', 2, '2018-12-20', 'daily');
 
 -- --------------------------------------------------------
 
@@ -259,7 +295,7 @@ INSERT INTO `state` (`userID`, `state`) VALUES
 (6, 'lunch break'),
 (7, 'default'),
 (8, 'default'),
-(108, 'at home'),
+(108, 'default'),
 (109, 'default'),
 (110, 'default');
 
@@ -279,18 +315,23 @@ CREATE TABLE `tag` (
 --
 
 INSERT INTO `tag` (`noteID`, `tag`) VALUES
-(1, '#shopping'),
-(2, '#food'),
-(3, '#food'),
-(3, '#shopping'),
-(3, '#tourism'),
-(4, '#food'),
-(4, '#tourism'),
-(4, '#transportation'),
-(5, '#food'),
-(5, '#tourism'),
-(6, '#food'),
-(6, '#tourism');
+(1, 'shopping'),
+(2, 'food'),
+(3, 'food'),
+(3, 'shopping'),
+(3, 'tourism'),
+(4, 'food'),
+(4, 'tourism'),
+(4, 'transportation'),
+(5, 'food'),
+(5, 'tourism'),
+(6, 'food'),
+(6, 'tourism'),
+(7, 'shopping'),
+(8, 'school'),
+(9, 'test'),
+(10, 'test'),
+(11, 'food');
 
 -- --------------------------------------------------------
 
@@ -345,7 +386,7 @@ INSERT INTO `user` (`userID`, `email`, `userName`, `password`, `gender`, `birthD
 (6, 'chrismartin@coldplay.com', 'paradise', 'chrismartin1977', 'male', '1977-03-02', 'United Kingdom'),
 (7, 'thomyorke@radiohead.com', 'thomyorke', 'ihatedom', 'male', '1968-10-07', 'United Kingdom'),
 (8, 'petrilindroos@ensiferum.com', 'petriworrier', 'wintersunsucks', 'male', '1980-01-10', 'Finland'),
-(108, 'test@gmail.com', 'test', '123', 'male', '1998-01-02', 'Azerbaijan'),
+(108, 'test@gmail.com', 'test', '123', 'male', '1998-01-02', 'France'),
 (109, 'friend1@gmail.com', 'friend1', '123456', 'male', '1990-05-05', 'Australia'),
 (110, 'friend2@gmail.com', 'friend2', '111111', 'female', '1998-12-21', 'China');
 
@@ -356,7 +397,7 @@ INSERT INTO `user` (`userID`, `email`, `userName`, `password`, `gender`, `birthD
 --
 DROP TABLE IF EXISTS `tempfilter`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `tempfilter`  AS  (select `filter`.`userID` AS `filteruser`,`note`.`noteID` AS `noteID`,`note`.`userID` AS `noteuser` from (((`filter` join `note`) join `schedule` on((`filter`.`fsID` = `schedule`.`sID`))) join `current` on((`filter`.`userID` = `current`.`userID`))) where ((cast(`current`.`cTime` as date) between `schedule`.`startDate` and `schedule`.`endDate`) and (cast(`current`.`cTime` as time) between `schedule`.`startTime` and `schedule`.`endTime`) and (((`schedule`.`repetition` = 'no') and (cast(`current`.`cTime` as date) = `schedule`.`startDate`)) or (`schedule`.`repetition` = 'daily') or ((`schedule`.`repetition` = 'weekly') and (`current`.`cWeekday` = `schedule`.`Weekday`)) or ((`schedule`.`repetition` = 'monthly') and (dayofmonth(`current`.`cTime`) = dayofmonth(`schedule`.`startDate`)))) and ((((6378.138 * 2) * asin(sqrt((pow(sin(((((`filter`.`fLatitude` * 3.14) / 180) - ((`note`.`nLatitude` * 3.14) / 180)) / 2)),2) + ((cos(((`filter`.`fLatitude` * 3.14) / 180)) * cos(((`note`.`nLatitude` * 3.14) / 180))) * pow(sin(((((`filter`.`fLongitude` * 3.14) / 180) - ((`note`.`nLongitude` * 3.14) / 180)) / 2)),2)))))) * 0.621) < `note`.`radius`) and ((`filter`.`fRestrict` = 'all') or ((`filter`.`fRestrict` = 'self') and (`filter`.`userID` = `note`.`userID`)) or ((`filter`.`fRestrict` = 'friends') and `filter`.`userID` in (select `friendship`.`userID2` from `friendship` where (`friendship`.`userID1` = `note`.`userID`)))) and (`filter`.`apply` = '1'))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `tempfilter`  AS  (select `filter`.`userID` AS `filteruser`,`note`.`noteID` AS `noteID`,`note`.`userID` AS `noteuser` from (((((`filter` join `note`) join `tag` on((`note`.`noteID` = `tag`.`noteID`))) join `schedule` on((`filter`.`fsID` = `schedule`.`sID`))) join `current` on((`filter`.`userID` = `current`.`userID`))) join `state` on((`filter`.`userID` = `state`.`userID`))) where ((cast(`current`.`cTime` as date) between `schedule`.`startDate` and `schedule`.`endDate`) and (cast(`current`.`cTime` as time) between `schedule`.`startTime` and `schedule`.`endTime`) and (((`schedule`.`repetition` = 'no') and (cast(`current`.`cTime` as date) = `schedule`.`startDate`)) or (`schedule`.`repetition` = 'daily') or ((`schedule`.`repetition` = 'weekly') and (`current`.`cWeekday` = `schedule`.`Weekday`)) or ((`schedule`.`repetition` = 'monthly') and (dayofmonth(`current`.`cTime`) = dayofmonth(`schedule`.`startDate`)))) and ((((6378.138 * 2) * asin(sqrt((pow(sin(((((`filter`.`fLatitude` * 3.14) / 180) - ((`note`.`nLatitude` * 3.14) / 180)) / 2)),2) + ((cos(((`filter`.`fLatitude` * 3.14) / 180)) * cos(((`note`.`nLatitude` * 3.14) / 180))) * pow(sin(((((`filter`.`fLongitude` * 3.14) / 180) - ((`note`.`nLongitude` * 3.14) / 180)) / 2)),2)))))) * 0.621) < `note`.`radius`) and ((`filter`.`fRestrict` = 'all') or ((`filter`.`fRestrict` = 'self') and (`filter`.`userID` = `note`.`userID`)) or ((`filter`.`fRestrict` = 'friends') and `filter`.`userID` in (select `friendship`.`userID2` from `friendship` where (`friendship`.`userID1` = `note`.`userID`)))) and (`filter`.`apply` = '1') and ((`filter`.`fState` = NULL) or (`filter`.`fState` = 'default') or (`filter`.`fState` = `state`.`state`)) and ((`filter`.`fTag` = NULL) or (`filter`.`fTag` = `tag`.`tag`)))) ;
 
 -- --------------------------------------------------------
 
@@ -447,25 +488,25 @@ ALTER TABLE `user`
 -- 使用表AUTO_INCREMENT `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `cID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `cID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- 使用表AUTO_INCREMENT `filter`
 --
 ALTER TABLE `filter`
-  MODIFY `filterID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `filterID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- 使用表AUTO_INCREMENT `note`
 --
 ALTER TABLE `note`
-  MODIFY `noteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `noteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- 使用表AUTO_INCREMENT `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `sID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `sID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- 使用表AUTO_INCREMENT `user`

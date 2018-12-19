@@ -20,16 +20,27 @@ else
 	$email=$_SESSION['email'];
 	$user=userdata($email);
 	$state=statedata($userid);
-	
-	$sql="SELECT *
-FROM (
-SELECT tempNote.noteID as note,tempFilter.filteruser as user
-FROM tempNote, tempFilter
-WHERE tempNote.filteruser=tempFilter.filteruser AND tempNote.noteuser=tempFilter.noteuser AND tempNote.noteID=tempFilter.noteID
-) afterfilter join note on note.noteID = afterfilter.note
-WHERE afterfilter.user='$userid';";
-	$result=mysqli_query($con, $sql);
-	$row=mysqli_num_rows($result);
+	$sql1="select * from filter where filter.userID='$userid' and apply=1";
+	$result1=mysqli_query($con, $sql1);
+	$row1=mysqli_num_rows($result1);
+	if($row1>0)
+	{
+		$sql="SELECT *
+	FROM (
+	SELECT tempNote.noteID as note,tempFilter.filteruser as user
+	FROM tempNote, tempFilter
+	WHERE tempNote.filteruser=tempFilter.filteruser AND tempNote.noteuser=tempFilter.noteuser AND tempNote.noteID=tempFilter.noteID
+	) afterfilter join note on note.noteID = afterfilter.note
+	WHERE afterfilter.user='$userid';";
+		$result=mysqli_query($con, $sql);
+		$row=mysqli_num_rows($result);
+	}
+	else
+	{
+			$sql="SELECT * FROM note";
+			$result=mysqli_query($con, $sql);
+			$row=mysqli_num_rows($result);
+	}
 }
 ?>
 
