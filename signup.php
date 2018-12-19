@@ -48,7 +48,7 @@ else
 		$_SESSION['email']=$user['email'];
 		$sql2="insert into state(userID, state) values ('".$user['userID']."', 'default')";
 		$result2=mysqli_query($con, $sql2);
-		$sql3="insert into insert into current (userID, cTime, cWeekday, cLongitude, cLatitude, cLocation) values ('".$user['userID']."', '2000-01-01 00:00:00', 6, 0, 0, 'default')";
+		$sql3="insert into current (userID, cTime, cWeekday, cLongitude, cLatitude, cLocation) values ('".$user['userID']."', '2000-01-01 00:00:00', 6, 0, 0, 'default')";
 		$result3=mysqli_query($con, $sql3);
 		echo"<script type='text/javascript'>alert('Successfully register!');location='index.php';</script>";
 	}
